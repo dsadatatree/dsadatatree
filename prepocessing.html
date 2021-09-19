@@ -1,0 +1,449 @@
+<!DOCTYPE HTML>
+
+
+<html>
+	<head>
+		<title>Data Tree</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo"><strong>DSA</strong> <span>programa de mentoria</span></a>
+						<nav>
+							<a href="#menu">Menu</a>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<ul class="links">
+							<li><a href="index.html">Home</a></li>
+							<li><a href="landing.html">Landing</a></li>
+							<li><a href="generic.html">Generic</a></li>
+							<li><a href="elements.html">Elements</a></li>
+						</ul>
+						<ul class="actions stacked">
+							<li><a href="#" class="button primary fit">Get Started</a></li>
+							<li><a href="#" class="button fit">Log In</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main" class="alt">
+
+						<!-- One -->
+							<section id="one">
+								<div class="inner">
+									<header class="major">
+										<h1>Pré processamento dos Dados</h1>
+									</header>
+									<span class="image main"><img src="images/preproc.png" width= '50' alt="" /></span>
+									<p>Nesta, parte do projeto iremos pegar o conjunto de dados e realizar algumas limpesa de dados. Não terá nenhuma análise exploratória 
+										apenas, Data Cleaning e Data Wrangling e enriquecimento de dados.</p>
+
+									<h2><strong><span style="text-decoration: underline;">Carregando o nosso conjunto de dados</span></strong></h2>	
+									<p> Para coletar o dados basta entrar no link: <a href="'https://sineaberto.economia.gov.br/publico/D_ETL_IMO_EXTRACAO_SINE_ABERTO_TRABALHADORES_SC.zip'">SINE</a>, 
+										e realizar o download do arquivo:</p>
+
+										<pre><code>df = pd.read_csv("Dados/D_ETL_IMO_EXTRACAO_SINE_ABERTO_TRABALHADORES_SC.csv",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sep = ";", encoding='latin-1')</code></pre>
+
+										<p>Ao colocar o comando abaixo, iremos observar a quantidade de linhas e contidade de colunas</p>
+										<pre><code>df.shape</code></pre>
+										<p># (458965, 20)</p>
+
+										<p> Temos que o nosso conjunto de dados possuem 4.589.65 observações (linhas) e 20 variáveis (colunas)</p>
+
+										<p>Abaixo mostramos as 02 primeiras linhas:</p>
+										<pre><code>df.head(2)</code></pre>
+										<table border="1" class="dataframe">
+											<thead>
+											  <tr style="text-align: right;">
+												<th></th>
+												<th>NACIONALIDADE</th>
+												<th>DEFICIENCIAS</th>
+												<th>BAIRRO</th>
+												<th>CEP</th>
+												<th>CODIGO_MUNICIPIO_IBGE</th>
+												<th>NOME_MUNICIPIO</th>
+												<th>UF</th>
+												<th>ESCOLARIDADE</th>
+												<th>ESTUDANTE</th>
+												<th>CURSOS_PROFISSIONALIZANTES</th>
+												<th>GRADUACOES</th>
+												<th>POS_GRADUACOES</th>
+												<th>IDIOMAS</th>
+												<th>HABILITACAO</th>
+												<th>VEICULOS</th>
+												<th>DISP_VIAJAR</th>
+												<th>DISP_DORMIR_EMP</th>
+												<th>DISP_AUSENTAR_DOMIC</th>
+												<th>PRETENSOES</th>
+												<th>MUNICIPIOS_INTERESSE</th>
+											  </tr>
+											</thead>
+											<tbody>
+											  <tr>
+												<th>0</th>
+												<td>ESTRANGEIRA</td>
+												<td>NaN</td>
+												<td>BARRAGEM</td>
+												<td>89165108.0</td>
+												<td>421480</td>
+												<td>RIO DO SUL</td>
+												<td>SC</td>
+												<td>Médio Completo</td>
+												<td>N</td>
+												<td>TÉCNICO EM ELÉTRICA/REFRIGERAÇÃO</td>
+												<td>NaN</td>
+												<td>NaN</td>
+												<td>NaN</td>
+												<td>Nenhum</td>
+												<td>N</td>
+												<td>S</td>
+												<td>S</td>
+												<td>S</td>
+												<td>414105-Almoxarife(N,15,0,Indiferente)|717020-Servente de obras(N,0,24,Indiferente)|951105-Eletricista(N,0,36,Indiferente)</td>
+												<td>NaN</td>
+											  </tr>
+											  <tr>
+												<th>1</th>
+												<td>BRASILEIRA</td>
+												<td>NaN</td>
+												<td>CAMINHO NOVO</td>
+												<td>88132373.0</td>
+												<td>421190</td>
+												<td>PALHOCA</td>
+												<td>SC</td>
+												<td>Médio Completo</td>
+												<td>S</td>
+												<td>NaN</td>
+												<td>NaN</td>
+												<td>NaN</td>
+												<td>Inglês Básico</td>
+												<td>A</td>
+												<td>S</td>
+												<td>S</td>
+												<td>S</td>
+												<td>S</td>
+												<td>414105-Auxiliar de almoxarifado(N,149,0,Indiferente)|414120-Conferente de logística(N,0,0,Indiferente)|514320-Auxiliar de limpeza(N,0,0,Indiferente)|517410-Porteiro(N,7,0,Indiferente)|724315-Soldador(N,21,0,Indiferente)|784205-Auxiliar de linha de produção(N,0,0,Indiferente)</td>
+												<td>NaN</td>
+											  </tr>
+											</tbody>
+										  </table>	
+										  
+										  <P> Agora iremos pegar de forma aleatória uma proporção apenas de 30% do conjunto de Dados, pois o conjunto de dados completo.								  </P>
+										  <pre><code>df_fatia = df.sample(frac=0.3, replace = False, random_state = 1)</code></pre>
+
+										  <pre><code>df_fatia.shape</code></pre>
+										<p># (1.376.90, 20)</p>
+										<p>Poodemos salvar este novo conjunto de dados para começarmos a trabalhar com pré processamento de dados.</p>
+										<pre><code>df_fatia.to_csv('df_fatia.csv', index = False)</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+										<h2>1. Limpeza dos Dados</h2>
+
+										<details><summary>1.1 Carregando Bibliotecas e Carregando os dados:</summary>
+										<p> primeiramente iremos pegar o nosso conjunto de dados já fatiado, para trabalhar com algumas colunas. Para realizar esta etapa precisaremos carregar algumas bibliotecas:</P>
+										<pre><code>import pandas as pd</br>import re</br>import unidecode</br>import matplotlib as plt</code></pre>
+										<h4>Carregando o conjunto de dados</h4>
+										<p>O Conjunto de dados <b>pib_cidade.csv</b>, está ne repositóri do github, porém foi retirado do <a href="https://pt.wikipedia.org/wiki/Lista_de_munic%C3%ADpios_de_Santa_Catarina_por_PIB">Wikipedioa</a>.</p>
+										<pre><code>df_fatia = pd.read_csv('df_fatia.csv')</br>pib = pd.read_csv('pib_cidade.csv', sep = ';', encoding='latin1')</code></pre>
+										</details>
+
+									<hr />
+									<br>
+										<details><summary>1.2 Excluindo alguns registros</summary>
+
+											<p>Na coluna <b>ESCOLARIDADE</b> iremos fazer algumas modificações. Primeiramente removemos em nosso conjunto de dados, todos os registros  classificado como:
+												<b>Não identificado </b>(6,43% do nosso conjunto de dados). Conforme podemos ver abaixo:</b></p>
+												<table border="1" class="dataframe">
+													<thead>
+													  <tr style="text-align: right;">
+														<th></th>
+														<th>ESCOLARIDADE</th>
+													  </tr>
+													</thead>
+													<tbody>
+													  <tr>
+														<th>Médio Completo</th>
+														<td>52.41</td>
+													  </tr>
+													  <tr>
+														<th>Fundamental Completo</th>
+														<td>11.13</td>
+													  </tr>
+													  <tr>
+														<th>Médio Incompleto</th>
+														<td>10.62</td>
+													  </tr>
+													  <tr>
+														<th>Superior Completo</th>
+														<td>7.92</td>
+													  </tr>
+													  <tr>
+														<th>Não Identificado</th>
+														<td>6.49</td>
+													  </tr>
+													  <tr>
+														<th>Superior Incompleto</th>
+														<td>6.43</td>
+													  </tr>
+													  <tr>
+														<th>Fundamental Incompleto</th>
+														<td>3.01</td>
+													  </tr>
+													  <tr>
+														<th>Nenhum</th>
+														<td>1.20</td>
+													  </tr>
+													  <tr>
+														<th>Analfabeto</th>
+														<td>0.36</td>
+													  </tr>
+													  <tr>
+														<th>Especialização</th>
+														<td>0.34</td>
+													  </tr>
+													  <tr>
+														<th>Mestrado</th>
+														<td>0.07</td>
+													  </tr>
+													  <tr>
+														<th>Doutorado</th>
+														<td>0.01</td>
+													  </tr>
+													</tbody>
+												  </table>
+												  <p>Na coluna <b>NACIONALIDADE</b> também removamos todos os registro que goram classificados como 
+													<b>IGNORADOS</b> (11,76% do nosso conjunto de dados). Conforme podemos ver abaixo:</p>
+													<table border="1" class="dataframe">
+														<thead>
+														  <tr style="text-align: right;">
+															<th></th>
+															<th>NACIONALIDADE</th>
+														  </tr>
+														</thead>
+														<tbody>
+														  <tr>
+															<th>BRASILEIRA</th>
+															<td>86.11</td>
+														  </tr>
+														  <tr>
+															<th>IGNORADO</th>
+															<td>11.76</td>
+														  </tr>
+														  <tr>
+															<th>ESTRANGEIRA</th>
+															<td>1.98</td>
+														  </tr>
+														  <tr>
+															<th>NATURALIZADO BRASILEIRO</th>
+															<td>0.09</td>
+														  </tr>
+														  <tr>
+															<th>BRASILEIRO NASCIDO NO EXTERIOR</th>
+															<td>0.07</td>
+														  </tr>
+														</tbody>
+													  </table>
+													
+										</details>
+
+
+
+										<hr />
+										<br>
+										<details><summary>1.3 Criando Colunas Numéricas:</summary>
+
+										<p> Temos a coluna <B>ESTUDANTE</B>, em nosso conjunto de dados, com douas categoria ("S") significando que o candidato é estudante, ou ("N"), significando que o candidato não é 
+										estudante. Iremos criar uma coluna do mesmo tipo, porém numérica, como 1 para estudante e 0 para não estudante.</p>
+										<pre><code>df['Estudante'] = None</br>df['Estudante'] = df['ESTUDANTE'].apply(lambda x: 1 if x == 'S' else 0)</code></pre>
+										<p>Podemos observar a criação da nova coluna abaixo:</p>
+										<pre><code>df_fatia[['ESTUDANTE','Estudante']].tail(3)</code></pre>
+										<table border="1" class="dataframe">
+											<thead>
+											  <tr style="text-align: right;">
+												<th></th>
+												<th>ESTUDANTE</th>
+												<th>Estudante</th>
+											  </tr>
+											</thead>
+											<tbody>
+											  <tr>
+												<th>137686</th>
+												<td>N</td>
+												<td>0</td>
+											  </tr>
+											  <tr>
+												<th>137687</th>
+												<td>S</td>
+												<td>1</td>
+											  </tr>
+											  <tr>
+												<th>137688</th>
+												<td>N</td>
+												<td>0</td>
+											  </tr>
+											</tbody>
+										  </table>
+
+										  Agora vamos observar a quantidade de estudante para não estudante:
+										  <pre><code>df_fatia['Estudante'].value_counts()</code></pre>
+										<p>#  0 &nbsp;&nbsp;&nbsp; 125131 </br># 1 &nbsp;&nbsp;&nbsp;12558</br>Name: Estudante, dtype: int 64</p>
+
+										<pre><code>estudante = df_fatia['ESTUDANTE'].value_counts()</br>ax = estudante.plot(kind = 'barh', color = ['red','blue'], title = 'Quantidade de Cantidade Estudantes e \n Não Estudantes',</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xlabel = "Categoria")</code></pre>
+										<img  src="images/estudante.01.png",   width= 70% alt="" />
+
+										<p>O mesmof eito pela categoria Estudante feremos com as categorias: <b>'VEICULOS', 'DISP_VIAJAR', 'DISP_DORMIR_EMP', 'DISP_AUSENTAR_DOMIC' e 'ESCOLARIDADE'.</b></p>
+										<pre><code>df_fatia['Veiculo'] = None</br>df_fatia['Veiculo'] = df_fatia['VEICULOS'].apply(lambda x: 1 if x == 'S' else 0)</br></br>df_fatia['Viajar'] = None</br>df_fatia['Viajar'] = df_fatia['DISP_VIAJAR'].apply(lambda x: 1 if x == 'S' else 0)</br></br>df_fatia['Dormir_local'] = None</br>df_fatia['Dormir_local'] = df_fatia['DISP_DORMIR_EMP'].apply(lambda x: 1 if x == 'S' else 0)</br></br>df_fatia['Ausentar_Domic'] = None</br>df_fatia['Ausentar_Domic'] = df_fatia['DISP_AUSENTAR_DOMIC'].apply(lambda x: 1 if x == 'S' else 0)</code></pre>
+										<p>A análisde exploratória será demonstrado em outra página, esta página tem como propósito apenas demonstrar o préprocessamento de dados.</p>
+										
+										  <p> Depois categorizamos de 0 a 3, sendo respectivamente: analfabeto, ensino fundamental, ensino médico e superior e outras categorias.</p>
+
+										  <table border="1" class="dataframe">
+											 <tr>
+												<th>ESCOLARIDADE</th>
+												<th>Nivel_esc</th>
+												<th>Quantidade</th>
+											  </tr>
+											</thead>
+											<tbody>
+											  <tr>
+												<th>Médio Completo</th>
+												<th>2</th>
+												<td>72167</td>
+											  </tr>
+											  <tr>
+												<th>Fundamental Completo</th>
+												<th>1</th>
+												<td>15326</td>
+											  </tr>
+											  <tr>
+												<th>Médio Incompleto</th>
+												<th>2</th>
+												<td>14627</td>
+											  </tr>
+											  <tr>
+												<th>Superior Completo</th>
+												<th>3</th>
+												<td>10908</td>
+											  </tr>
+											  <tr>
+												<th>Superior Incompleto</th>
+												<th>3</th>
+												<td>8852</td>
+											  </tr>
+											  <tr>
+												<th>Fundamental Incompleto</th>
+												<th>1</th>
+												<td>4142</td>
+											  </tr>
+											  <tr>
+												<th>Nenhum</th>
+												<th>0</th>
+												<td>1646</td>
+											  </tr>
+											  <tr>
+												<th>Analfabeto</th>
+												<th>0</th>
+												<td>499</td>
+											  </tr>
+											  <tr>
+												<th>Especialização</th>
+												<th>3</th>
+												<td>466</td>
+											  </tr>
+											  <tr>
+												<th>Mestrado</th>
+												<th>3</th>
+												<td>101</td>
+											  </tr>
+											  <tr>
+												<th>Doutorado</th>
+												<th>3</th>
+												<td>14</td>
+											  </tr>
+											</tbody>
+										  </table>
+										</details>
+										 
+										
+										<hr />
+										<br>
+
+
+
+										<h2>2. Enriquecimento de Base</h2>
+
+
+
+
+
+
+
+
+
+
+								
+								
+								
+								
+								
+								
+								</header>
+
+									
+
+								</div>
+
+							</section>
+
+					</div>
+
+				
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							<ul class="icons">
+								<h5>Repositório do Github:</h5>
+								<li><a href="https://github.com/dsadatatree/dsadatatree" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+							</ul>
+							<ul class="copyright">
+								<li>&copy; 2021</li><li>Design: Mento e mentorados</li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
