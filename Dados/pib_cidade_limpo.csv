@@ -1,0 +1,296 @@
+Município,pib,percentual,Cidade,Regiao
+Joinville,30785682.0,0.0645741631951193,joinville,Norte
+Itajaí,25413431.0,0.05330565815439476,itajai,Vale do Iajaí
+Florianópolis,21059561.0,0.044173246798026755,florianopolis,Grande Florianópolis
+Blumenau,16958783.0,0.03557170573751184,blumenau,Vale do Iajaí
+São José,10607482.0,0.02224960531188786,sao jose,Grande Florianópolis
+Chapecó,9602336.0,0.02014127255385699,chapeco,Oeste
+Jaraguá do Sul,8995685.0,0.01886879852919571,jaragua do sul,Norte
+Criciúma,7684445.0,0.016118421722602038,criciuma,Sul
+Brusque,6375501.0,0.013372860865146542,brusque,Vale do Iajaí
+Balneário Camboriú,5549599.0,0.011640499355949655,balneario camboriu,Vale do Iajaí
+Palhoça,5489675.0,0.011514806439505436,palhoca,Grande Florianópolis
+Lages,5103843.0,0.010705508840254613,lages,Serrana
+Araquari,4151191.0,0.00870728428521124,araquari,Norte
+São Francisco do Sul,4142714.0,0.008689503448606578,sao francisco do sul,Norte
+Navegantes,3820583.0,0.008013821169935377,navegantes,Vale do Iajaí
+Tubarão,3741552.0,0.007848050579195388,tubarao,Sul
+Concórdia,3349381.0,0.007025456681344006,concordia,Oeste
+Caçador,3298867.0,0.0069195016052265345,cacador,Oeste
+São Bento do Sul,3198188.0,0.006708323494040906,sao bento do sul,Norte
+Gaspar,2977369.0,0.006245147068630449,gaspar,Vale do Iajaí
+Rio do Sul,2719645.0,0.0057045609729480815,rio do sul,Vale do Iajaí
+Indaial,2589757.0,0.005432115850274247,indaial,Vale do Iajaí
+Videira,2427864.0,0.00509253899756241,videira,Oeste
+Içara,2336747.0,0.004901417552604664,icara,Sul
+Pomerode,2026616.0,0.00425090573981242,pomerode,Vale do Iajaí
+Mafra,1960222.0,0.004111641747181796,mafra,Norte
+Campos Novos,1948610.0,0.004087285126366258,campos novos,Serrana
+Joaçaba,1929063.0,0.004046284534988259,joacaba,Oeste
+Itapema,187201600.0,0.39266262377385197,itapema,Vale do Iajaí
+Biguaçu,1864510.0,0.003910882111331232,biguacu,Grande Florianópolis
+Timbó,1858869.0,0.0038990498948292987,timbo,Vale do Iajaí
+Araranguá,1833576.0,0.003845996845372926,ararangua,Sul
+Imbituba,1773195.0,0.0037193453536864826,imbituba,Sul
+Xanxerê,1703710.0,0.0035735978685532033,xanxere,Oeste
+Canoinhas,1702046.0,0.003570107563951321,canoinhas,Norte
+Guaramirim,1695622.0,0.003556632974550786,guaramirim,Norte
+Tijucas,1539749.0,0.0032296833055548927,tijucas,Grande Florianópolis
+São Miguel do Oeste,1521972.0,0.0031923953578940406,sao miguel do oeste,Oeste
+Camboriú,1501132.0,0.0031486826488175846,camboriu,Vale do Iajaí
+Curitibanos,1425005.0,0.0029890033108203023,curitibanos,Serrana
+Barra Velha,1393275.0,0.0029224484039586927,barra velha,Vale do Iajaí
+Maravilha,1288638.0,0.002702968234110654,maravilha,Oeste
+Porto Belo,1177910.0,0.0024707119552902215,porto belo,Vale do Iajaí
+Braço do Norte,1174452.0,0.0024634586660394354,braco do norte,Sul
+Rio Negrinho,1158011.0,0.0024289730302464404,rio negrinho,Norte
+Pinhalzinho,1122662.0,0.002354827130383502,pinhalzinho,Oeste
+Três Barras,1113577.0,0.002335770990174308,tres barras,Norte
+Garuva,1071260.0,0.0022470094397909882,garuva,Norte
+Xaxim,947824.0,0.0019880976376047397,xaxim,Oeste
+Fraiburgo,907522.0,0.0019035626279502616,fraiburgo,Oeste
+Orleans,907251.0,0.0019029941949291617,orleans,Sul
+Guabiruba,902535.0,0.0018931022018387315,guabiruba,Vale do Iajaí
+São João Batista,860226.0,0.0018043574317659977,sao joao batista,Grande Florianópolis
+São Joaquim,858520.0,0.0018007790305335392,sao joaquim,Serrana
+Laguna,841697.0,0.0017654921349100643,laguna,Sul
+São Lourenço do Oeste,839373.0,0.0017606174546848394,sao lourenço do oeste,
+Balneário Piçarras,839048.0,0.0017599357545672843,balneario pcarras,
+Capinzal,838007.0,0.0017577522166522849,capinzal,Oeste
+Ituporanga,831606.0,0.0017443258706446843,ituporanga,Vale do Iajaí
+Forquilhinha,813291.0,0.0017059094470969257,forquilhinha,Sul
+Seara,812692.0,0.001704653021341801,seara,Oeste
+Urussanga,794242.0,0.001665953430052904,urussanga,Sul
+Itapiranga,753900.0,0.0015813345188454959,itapiranga,Oeste
+Santo Amaro da Imperatriz,753610.0,0.0015807262325867545,santo amaro da imperatriz,Grande Florianópolis
+Sombrio,751251.0,0.0015757781385027161,sombrio,Sul
+Itapoá,714535.0,0.0014987649030683997,itapoa,Norte
+Nova Veneza,706798.0,0.0014825362451929417,nova veneza,Sul
+Cocal do Sul,705872.0,0.0014805939242426157,cocal do sul,Sul
+Itaiópolis,704217.0,0.0014771224974901428,itaiopolis,Norte
+Porto União,702997.0,0.001474563500125782,porto uniao,Norte
+Otacílio Costa,695650.0,0.0014591528823913904,otacalio costa,
+Penha,673705.0,0.0014131223929152472,penha,Vale do Iajaí
+Morro da Fumaça,635361.0,0.0013326943642766854,morro da fumaca,Sul
+Capivari de Baixo,429616.0,0.0009011362390878453,capivari de baixo,Sul
+São Ludgero,582845.0,0.0012225400154350751,sao ludgero,Sul
+Correia Pinto,616476.0,0.0012930823435996764,correia pinto,Serrana
+Abelardo Luz,606372.0,0.001271888811329594,abelardo luz,Oeste
+Piratuba,653188.0,0.0013700871888786999,piratuba,Oeste
+Presidente Getúlio,625705.0,0.0013124405293994178,presidente getulio,Vale do Iajaí
+Ilhota,618625.0,0.0012975899545308329,ilhota,Vale do Iajaí
+Treze Tílias,614749.0,0.0012894598940519297,treze tilias,Oeste
+Bombinhas,598278.0,0.0012549113320942374,bombinhas,Vale do Iajaí
+Massaranduba,588956.0,0.0012353580751839342,massaranduba,Norte
+Mondaí,581186.0,0.0012190601985273093,mondai,Oeste
+Antônio Carlos,577384.0,0.0012110853559213262,antonio carlos,Grande Florianópolis
+Palmitos,574725.0,0.0012055080001903138,palmitos,Oeste
+Taió,573530.0,0.0012030014412965345,taio,Vale do Iajaí
+Luiz Alves,570947.0,0.0011975834985160888,luiz alves,Vale do Iajaí
+Corupá,544568.0,0.0011422525218976708,corupa,Norte
+Papanduva,543649.0,0.0011403248837191073,papanduva,Norte
+Garopaba,534078.0,0.0011202493396418156,garopaba,Sul
+Nova Trento,523514.0,0.0010980909395130402,nova trento,Grande Florianópolis
+Pouso Redondo,520561.0,0.0010918969073679934,pouso redondo,Vale do Iajaí
+Cunha Porã,519410.0,0.0010894826401824367,cunha pora,Oeste
+Turvo,518005.0,0.0010865355981357755,turvo,Sul
+Schroeder,478756.0,0.0010042092968621757,schroeder,Norte
+Jaguaruna,473323.0,0.0009928133684354778,jaguaruna,Sul
+Siderópolis,457695.0,0.0009600330317057823,sideropolis,Sul
+Campo Alegre,456415.0,0.0009573481820120268,campo alegre,Norte
+Faxinal dos Guedes,434654.0,0.000911703639679361,faxinal dos guedes,Oeste
+Herval d`Oeste,430280.0,0.0009025290048664809,herval d oeste,Oeste
+Ibirama,421544.0,0.0008842049057066,ibirama,Vale do Iajaí
+Santa Cecília,419251.0,0.0008793952491848959,santa cecilia,Serrana
+Apiúna,414857.0,0.000870178663595551,apiuna,Vale do Iajaí
+Tangará,411908.0,0.0008639930216057972,tangara,Oeste
+Dionísio Cerqueira,400407.0,0.0008398692275996399,dionisio cerqueira,Oeste
+Catanduvas,393217.0,0.0008247879234604979,catanduvas,Oeste
+São José do Cedro,389368.0,0.0008167144965298223,são jose do cedro,
+Vargem Bonita,384140.0,0.0008057485635618899,vargem bonita,Oeste
+Quilombo,347490.0,0.0007288737656899076,quilombo,Oeste
+São Carlos,340011.0,0.0007131862728308475,sao carlos,Oeste
+Ipumirim,313369.0,0.0006573036435019156,ipumirim,Oeste
+Rio dos Cedros,310212.0,0.0006506817134369266,rio dos cedros,Vale do Iajaí
+Irineópolis,299263.0,0.0006277157608612012,irineopolis,Norte
+Rodeio,273836.0,0.0005743816412025139,rodeio,Vale do Iajaí
+Lebon Régis,263245.0,0.0005521666075255108,lebon regis,Oeste
+Bom Retiro,254168.0,0.0005331272476269028,bom retiro,Serrana
+Lauro Müller,253291.0,0.0005312877060789157,lauro muller,Sul
+Saudades,250776.0,0.0005260123959384508,saudades,Oeste
+Jacinto Machado,247730.0,0.0005196232926828421,jacinto machado,Sul
+Agrolândia,243159.0,0.0005100354427217827,agrolandia,Vale do Iajaí
+Água Doce,241229.0,0.000505987192792917,agua doce,Oeste
+Sangão,239991.0,0.0005033904397297379,sangao,Sul
+São Domingos,239502.0,0.0005023647432451704,sao domingos,Oeste
+Botuverá,237666.0,0.00049851366196569,botuvera,Vale do Iajaí
+Vidal Ramos,237159.0,0.000497450209782304,vidal ramos,Vale do Iajaí
+Rio Fortuna,234824.0,0.0004925524566300236,rio fortuna,Sul
+Trombudo Central,232352.0,0.0004873673406589583,trombudo central,Vale do Iajaí
+Coronel Freitas,230704.0,0.00048391059667824814,coronel freitas,Oeste
+Lontras,229650.0,0.0004816997907585464,lontras,Vale do Iajaí
+Guaraciaba,227513.0,0.0004772173502932688,guaraciaba,Oeste
+São José do Cerrito,224631.0,0.0004711722434046725,sao jose do cerrito,Serrana
+Campo Erê,223506.0,0.0004688125122285202,campo ere,Oeste
+Urubici,216801.0,0.0004547485144186528,urubici,Serrana
+Governador Celso Ramos,211698.0,0.0004440447738036262,governador celso ramos,Grande Florianópolis
+Benedito Novo,211088.0,0.0004427652751214459,benedito novo,Vale do Iajaí
+Iporã do Oeste,210264.0,0.0004410369031310908,ipora do oeste,Oeste
+Laurentino,208802.0,0.0004379703013715045,laurentino,Vale do Iajaí
+Ponte Serrada,204793.0,0.0004295612682291095,ponte serrada,Oeste
+Itá,201670.0,0.0004230106544841108,ita,Oeste
+Braço do Trombudo,197268.0,0.00041377728858418,braco do trombudo,Vale do Iajaí
+Descanso,195704.0,0.00041049673786462253,descanso,Oeste
+Cordilheira Alta,193084.0,0.00040500118614771686,cordilheira alta,Oeste
+Irani,192835.0,0.0004044788989807285,irani,Oeste
+Santa Terezinha,192170.0,0.0004030840356632696,santa terezinha,Norte
+Guatambu,188923.0,0.0003962733271041884,guatambu,Oeste
+Caibi,188134.0,0.00039461836897264693,caibi,Oeste
+Palma Sola,186872.0,0.00039197127497770995,palma sola,Oeste
+Luzerna,186576.0,0.000391350403486029,luzerna,Oeste
+Alfredo Wagner,185230.0,0.00038852711622993925,alfredo wagner,Grande Florianópolis
+Grão-Pará,183883.0,0.0003857017314350263,grao-para,
+Paulo Lopes,183387.0,0.00038466135217869605,paulo lopes,Grande Florianópolis
+Rio do Oeste,183183.0,0.00038423345425875376,rio do oeste,Vale do Iajaí
+Canelinha,181019.0,0.00037969438024524846,canelinha,Grande Florianópolis
+São João do Oeste,180029.0,0.0003776178168102345,sao joao do oeste,Oeste
+Major Vieira,178852.0,0.00037514901361527343,major vieira,Norte
+Treviso,176389.0,0.00036998277549361744,treviso,Sul
+Armazém,175958.0,0.0003690787362607982,armazem,Sul
+Salete,173667.0,0.0003642732748167406,salete,Vale do Iajaí
+Meleiro,172003.0,0.0003607829702148585,meleiro,Sul
+Ipuaçu,169460.0,0.0003554489289873428,ipuacu,Oeste
+Monte Castelo,167157.0,0.0003506182970774062,monte castelo,Norte
+Imaruí,164478.0,0.000344998990569929,imarui,Sul
+Balneário Rincão,164196.0,0.0003444074846217735,balneario rincao,Sul
+Ascurra,158162.0,0.00033175093536230444,ascurra,Vale do Iajaí
+Campo Belo do Sul,157862.0,0.0003311216737153305,campo belo do sul,Serrana
+Rio do Campo,157127.0,0.0003295799826802444,rio do campo,Vale do Iajaí
+Petrolândia,155536.0,0.00032624279841245927,petrolandia,Vale do Iajaí
+Timbó Grande,155328.0,0.000325806510337224,timbo grande,Norte
+Morro Grande,153479.0,0.0003219281610530413,morro grande,Sul
+Agronômica,147142.0,0.0003086360575301286,agronomica,Vale do Iajaí
+Rio das Antas,146949.0,0.000308231232537242,rio das antas,Oeste
+Gravatal,146727.0,0.00030776557891848134,gravatal,Sul
+Salto Veloso,144514.0,0.00030312372550263695,salto veloso,Oeste
+Aurora,142700.0,0.0002993187900772679,aurora,Vale do Iajaí
+Balneário Barra do Sul,142111.0,0.00029808333971037575,balneario barra do sul,Norte
+Balneário Arroio do Silva,141030.0,0.00029581590024244634,balneario arroio do silva,Sul
+Bela Vista do Toldo,140818.0,0.0002953712220119181,bela vista do toldo,Norte
+Praia Grande,139724.0,0.0002930765145392865,praia grande,Sul
+Maracajá,138286.0,0.00029006025371145806,maracaja,Sul
+Águas Mornas,136880.0,0.0002871111141259736,aguas mornas,Grande Florianópolis
+Lindóia do Sul,136802.0,0.00028694750609776034,lindoia do sul,Oeste
+Xavantina,136698.0,0.0002867293620601427,xavantina,Oeste
+Santa Rosa do Sul,136637.0,0.0002866014121919247,santa rosa do sul,Sul
+Monte Carlo,134169.0,0.0002814246863761525,monte carlo,Serrana
+Nova Erechim,130592.0,0.0002739217900053999,nova erechim,Oeste
+São João do Sul,129987.0,0.00027265277901733585,sao joao do sul,Sul
+Ouro,125188.0,0.00026258669020457615,ouro,Oeste
+Guarujá do Sul,124559.0,0.00026126733828475414,guaruja do sul,Oeste
+Jaborá,122874.0,0.00025773298536758385,jabora,Oeste
+Treze de Maio,122432.0,0.0002568058732077089,treze de maio,Sul
+Pinheiro Preto,121781.0,0.0002554403754337755,pinheiro preto,Oeste
+Anchieta,119359.0,0.0002503601364038726,anchieta,Oeste
+Imbuia,119010.0,0.0002496280953545596,imbuia,Vale do Iajaí
+São João do Itaperiú,117097.0,0.0002456155035856891,sao joao do itaperiu,Vale do Iajaí
+Pedras Grandes,114938.0,0.00024108691726630005,pedras grandes,Sul
+Angelina,113337.0,0.0002377287576102825,angelina,Grande Florianópolis
+Nova Itaberaba,110890.0,0.00023259608010979844,nova itaberaba,Oeste
+Balneário Gaivota,110649.0,0.00023209057325339604,balneário gaivota,
+Ponte Alta,106632.0,0.00022366475980041507,ponte alta,Serrana
+Palmeira,106406.0,0.00022319071602636137,palmeira,Serrana
+Witmarsum,105059.0,0.00022036533123144842,witmarsum,Vale do Iajaí
+Passos Maia,103980.0,0.0002181020868411655,passos maia,Oeste
+São Cristovão do Sul,102894.0,0.00021582415967911985,sao cristovao do sul,Serrana
+Vargem,102738.0,0.0002154969436226934,vargem,Serrana
+Caxambu do Sul,101556.0,0.0002130176527336161,caxambu do sul,Oeste
+Erval Velho,100281.0,0.0002103432907339769,erval velho,Oeste
+Vitor Meireles,100047.0,0.0002098524666493372,vitor meireles,Vale do Iajaí
+Riqueza,99828.0,0.00020939310564704625,riqueza,Oeste
+Timbé do Sul,99571.0,0.0002088540381694719,timbe do sul,Sul
+Anita Garibaldi,99494.0,0.00020869252768008194,anita garibaldi,Serrana
+Tunápolis,98349.0,0.00020629084572746476,tunapolis,Oeste
+Iomerê,97636.0,0.00020479530054649003,iomere,Oeste
+Águas de Chapecó,95559.0,0.00020043871241060717,aguas de chapeco,Oeste
+José Boiteux,94266.0,0.00019772659471214952,jose boiteux,Vale do Iajaí
+Atalanta,94128.0,0.0001974371343545415,atalanta,Vale do Iajaí
+Dona Emma,93793.0,0.00019673445884875395,dona emma,Vale do Iajaí
+Passo de Torres,93052.0,0.00019518018258072833,passo de torres,Sul
+Vargeão,92621.0,0.0001942761433479091,vargeao,Oeste
+Arabutã,92415.0,0.00019384405035032033,arabuta,Oeste
+Iraceminha,91314.0,0.00019153466010592602,iraceminha,Oeste
+Rancho Queimado,90243.0,0.00018928819602622907,rancho queimado,Grande Florianópolis
+Modelo,88172.0,0.00018494419312328566,modelo,Oeste
+Bom Jardim da Serra,85630.0,0.0001796122494345932,bom jardim da serra,Serrana
+Paraíso,84368.0,0.0001769651554396562,paraiso,Oeste
+Leoberto Leal,83075.0,0.00017425303774119854,leoberto leal,Grande Florianópolis
+Ibicaré,82183.0,0.00017238203311086272,ibicare,Oeste
+Águas Frias,82111.0,0.00017223101031558897,aguas frias,Oeste
+Serra Alta,80103.0,0.0001680191523585101,serra alta,Oeste
+Ponte Alta do Norte,78911.0,0.00016551888608120033,ponte alta do norte,Serrana
+Romelândia,78297.0,0.00016423099724372701,romelandia,Oeste
+Arroio Trinta,75843.0,0.00015908363697148022,arroio trinta,Oeste
+Ouro Verde,75264.0,0.00015786916199282054,ouro verde,Oeste
+Lacerdópolis,73855.0,0.0001549137297908663,lacerdopolis,Oeste
+Ipira,73726.0,0.0001546431472826675,ipira,Oeste
+Doutor Pedrinho,73503.0,0.00015417539612508355,doutor pedrinho,Vale do Iajaí
+Peritiba,71167.0,0.00014927554543397984,peritiba,Oeste
+Chapadão do Lageado,69986.0,0.0001467983520837258,chapadao do lageado,Vale do Iajaí
+Novo Horizonte,68931.0,0.0001445854486252008,novo horizonte,Oeste
+São Martinho,67877.0,0.00014237464270549905,sao martinho,Sul
+Capão Alto,67111.0,0.00014076792796689227,capao alto,Serrana
+Ermo,64160.0,0.000134578090899492,ermo,Sul
+União do Oeste,62363.0,0.00013080881363411814,uniao do oeste,Oeste
+Planalto Alegre,61555.0,0.000129114002264935,planalto alegre,Oeste
+Arvoredo,61270.0,0.00012851620370030978,arvoredo,Oeste
+Galvão,60769.0,0.0001274653367498633,galvao,Oeste
+Calmon,60658.0,0.00012723250994048295,calmon,Oeste
+Abdon Batista,60555.0,0.00012701646344168857,abdon batista,Serrana
+São Bonifácio,59996.0,0.0001258439392394938,sao bonifácio,
+Brunópolis,59917.0,0.00012567823367245733,brunopolis,Serrana
+Bom Jesus,58664.0,0.00012305001752692954,bom jesus,Oeste
+Formosa do Sul,58283.0,0.00012225085523527265,formosa do sul,Oeste
+Marema,57959.0,0.00012157125265654078,marema,Oeste
+Bocaina do Sul,57588.0,0.00012079306575311635,bocaina do sul,Serrana
+Santa Helena,57517.0,0.00012064414049666586,santa helena,Oeste
+Sul Brasil,57292.0,0.0001201721942614354,sul brasil,Oeste
+Zortéa,57278.0,0.00012014282871790996,zortea,Serrana
+Bom Jesus do Oeste,56583.0,0.00011868503923575368,bom jesus do oeste,Oeste
+Princesa,56349.0,0.000118194215151114,princesa,Oeste
+Saltinho,55727.0,0.00011688954600305471,saltinho,Oeste
+Pescaria Brava,55693.0,0.00011681822968306433,pescaria brava,Sul
+São Pedro de Alcântara,55378.0,0.00011615750495374171,sao pedro de alcantara,Grande Florianópolis
+Lajeado Grande,54786.0,0.00011491576197037981,lajeado grande,Oeste
+Presidente Nereu,54426.0,0.00011416064799401109,presidente nereu,Vale do Iajaí
+São Bernardino,54115.0,0.00011350831341998144,sao bernardino,Oeste
+Cerro Negro,52826.0,0.00011080458587681678,cerro negro,Serrana
+Urupema,52785.0,0.00011071858678506367,urupema,Serrana
+Anitápolis,50650.0,0.00010624034139743251,anitapolis,Grande Florianópolis
+Major Gercino,50027.0,0.00010493357471054998,major gercino,Grande Florianópolis
+Santa Terezinha do Progresso,48577.0,0.00010189214341684263,santa terezinha do progresso,Oeste
+Entre Rios,47387.0,9.939607221717935e-05,entre rios,Oeste
+Rio Rufino,47161.0,9.892202844312566e-05,rio rufino,Serrana
+Mirim Doce,46484.0,9.750199465978782e-05,mirim doce,Vale do Iajaí
+Bandeirante,46375.0,9.727336292805394e-05,bandeirante,Oeste
+Jupiá,45401.0,9.523036011421191e-05,jupia,Oeste
+Alto Bela Vista,44892.0,9.416271285317946e-05,alto bela vista,Oeste
+Celso Ramos,43627.0,9.150932624177271e-05,celso ramos,Serrana
+Belmonte,43607.0,9.146737546530778e-05,belmonte,Oeste
+Macieira,43525.0,9.129537728180158e-05,macieira,Oeste
+Presidente Castello Branco,43320.0,9.086538182303606e-05,presidente castello branco,Oeste
+Santa Rosa de Lima,42289.0,8.870281929626898e-05,santa rosa de lima,Sul
+Frei Rogério,41736.0,8.754288032701369e-05,frei rogerio,Serrana
+Painel,40986.0,8.596972620957886e-05,painel,Serrana
+Ibiam,39235.0,8.229693573007433e-05,ibiam,Oeste
+Tigrinhos,39229.0,8.228435049713484e-05,tigrinhos,Oeste
+Coronel Martins,37546.0,7.875419265761108e-05,coronel martins,Oeste
+Matos Costa,34758.0,7.290625441839999e-05,matos costa,Oeste
+Flor do Sertão,33357.0,6.996760252703172e-05,flor do sertao,Oeste
+Cunhataí,32666.0,6.851820320016841e-05,cunhatai,Oeste
+Barra Bonita,32004.0,6.712963249917927e-05,barra bonita,Oeste
+Irati,31404.0,6.58711092052314e-05,irati,Oeste
+Paial,31083.0,6.51977992429693e-05,paial,Oeste
+São Miguel da Boa Vista,30172.0,6.328694137499178e-05,sao miguel da boa vista,Oeste
+Jardinópolis,30108.0,6.315269889030401e-05,jardinopolis,Oeste
+Santiago do Sul,33849.0,7.099959162806897e-05,santiago do sul,Oeste
