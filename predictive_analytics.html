@@ -23,18 +23,17 @@
 					</header>
 
 				<!-- Menu -->
-				<nav id="menu">
-					<ul class="links">
-						<li><a href="index.html">Home</a></li>
-						<li><a href="landing.html">Quem Somos</a></li>
-						<li><a href="exploratory_analysis.html">Análise Exploratória</a></li>
-						<li><a href="predictive_analytics.html">Análise Preditiva</a></li>
-					</ul>
-					<ul class="actions stacked">
-						<li><a target="_blank" href="https://github.com/dsadatatree/dsadatatree" class="button primary fit">Git Hub</a></li>
-
-					</ul>
-				</nav>
+					<nav id="menu">
+						<ul class="links">
+							<li><a href="index.html">Home</a></li>
+							<li><a href="landing.html">Quem Somos</a></li>
+							<li><a href="prepocessing.html">Pré Processamento dos Dados</a></li>
+							<li><a href="exploratory_analysis.html">Análise Exploratória</a></li>
+						</ul>
+						<ul class="actions stacked">
+							<li><a href="#" class="button primary fit">Git Hub</a></li>
+						</ul>
+					</nav>
 
 				<!-- Main -->
 					<div id="main" class="alt">
@@ -43,15 +42,14 @@
 							<section id="one">
 								<div class="inner">
 									<header class="major">
-										<h1>Pré processamento dos Dados</h1>
+										<h1>Análise Preditiva</h1>
 									</header>
-									<span ><img src="images/preproc.png" width= 80% alt="" /></span>
+									<span ><img src="images/pred.png" width= 80% alt="" /></span>
 								<p></p>
-									<p>Nesta, parte do projeto iremos pegar o conjunto de dados e realizar algumas limpesa de dados. Não terá nenhuma análise exploratória 
-										apenas, Data Cleaning e Data Wrangling e enriquecimento de dados.</p>
+									<p>Nesta ultima parte de nosso projeto iremos desenvolver algumas análises preditivas.</p>
 
 									<h2><strong><span style="text-decoration: underline;">Carregando o nosso conjunto de dados</span></strong></h2>	
-									<p> Para coletar o dados basta entrar no link: <a target="_blank" href="https://sineaberto.economia.gov.br/publico/D_ETL_IMO_EXTRACAO_SINE_ABERTO_TRABALHADORES_SC.zip">SINE</a>, 
+									<p> Para coletar o dados basta entrar no link: <a target="_blank" href="'https://sineaberto.economia.gov.br/publico/D_ETL_IMO_EXTRACAO_SINE_ABERTO_TRABALHADORES_SC.zip'">SINE</a>, 
 										e realizar o download do arquivo:</p>
 
 										<pre><code>df = pd.read_csv("Dados/D_ETL_IMO_EXTRACAO_SINE_ABERTO_TRABALHADORES_SC.csv",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sep = ";", encoding='latin-1')<br>df_CBO = pd.read_csv('Dados/cbo.csv',sep=';', encoding = "ISO-8859–1")
@@ -1313,7 +1311,7 @@
 								<br>
 
 								<ul class="actions">
-									<li><a href="exploratory_analysis.html" class="button next">Análise Exploratória</a></li>
+									<li><a href="landing.html" class="button next">Get Started</a></li>
 								</ul>
 
 	
