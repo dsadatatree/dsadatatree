@@ -1,0 +1,403 @@
+<!DOCTYPE HTML>
+<!--
+	Forty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Data Tre</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+				<!-- Note: The "styleN" class below should match that of the banner element. -->
+					<header id="header" class="alt style2">
+						<a href="index.html" class="logo"><strong>DSA</strong> <span>Conjunto de Dados</span></a>
+						<nav>
+							<a href="#menu">Menu</a>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+				<nav id="menu">
+					<ul class="links">
+						<li><a href="index.html">Home</a></li>
+						<li><a href="landing.html">Quem Somos</a></li>
+						<li><a href="prepocessing.html">Pré Processamento</a></li>
+						<li><a href="exploratory_analysis.html">Análise Exploratória</a></li>
+						<li><a href="predictive_analytics.html">Modelo Preditivo</a></li>
+					</ul>
+					<ul class="actions stacked">
+						<li><a href="summary.html" class="button primary fit">Sumário Executivo</a></li>
+					</ul>
+				</nav>
+
+				<!-- Banner -->
+				<!-- Main -->
+				<div id="main" class="alt">
+
+					<!-- One -->
+						<section id="one">
+							<div class="inner">
+								<header class="major">
+									<h1>&nbsp;&nbsp;<img src="images/logo.png" width= 4% alt="" />&nbsp;Dataset</h1>
+								</header>
+								<span ><img src="images/pic11.png" alt="" /></span>
+								<p style="text-align: justify;">O <b> SINE Aberto</b> é uma plataforma que visa aumentar a efetividade na 
+									colocação do trabalhador no mercado de trabalho, por meio do compartilhamento dos dados dos 
+									trabalhadores cadastrados no Sistema Nacional de Emprego (SINE).</br></br>
+									Para isso, o governo federal propõe realizar parcerias com empresas, ampliando os atores que fazem 
+									intermediação de mão de obra e potencializando a geração de empregos.</p>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- One -->
+							<section id="one">
+								<div class="inner">
+									<header class="major">
+										<h2>Conjunto de dados</h2>
+									</header>
+									<p style="text-align: justify;"><b>Objetivo do Programa: </b>Promover a mentoria entre alunos da Data Science Academy.</br></br>
+										A combinação Mentor/Mentorado foi feita com auxílio de um algoritmo que levou em conta as respostas de
+										 cada participante ao questionário. A combinação foi automática e sem interferência humana. Como o 
+										 questionário não tinha informação sobre sexo e idade, essas variáveis não foram consideradas. O Programa 
+										 vai durar 4 meses e acreditamos que pelo menos 1 sessão por mês entre Mentor e Mentorado deva ocorrer,
+										  totalizando assim 4 sessões no mínimo. Número maior de sessões depende da disponibilidade do Mentor e 
+										  não há limite máximo.</p></br>
+									<p style="text-align: justify;">O nosso principal conjutno de dados foi a utilização dos dados Aberto - 
+										Trabalhadores, do Estado de Santa Catarine fornecido pelo <a href="https://sineaberto.economia.gov.br/#/dados-abertos">Sine</a>.</p>
+									<p>O arquivo conjunto de dados utilizado é póblico e pode ser baixado, pelo <a href="https://sineaberto.economia.gov.br/#/dados-abertos">link</a>.
+									Abaixo iremos mostrar as 02 primeiras linhas do nosso conjunto de dados, para o conhecimento, pois ainda é preciso fazer o pré-processamento de dados e
+									 a limpesa de muitas variáveis, que será realizado na próxima etapa.</p>
+									 <p style="text-align: justify;">As variáveis apresentada no conjunto de dados são:</br>
+
+										<li><b>Nacionalidade:</b> Brasileiro, ignorado, Estrangeiro, Naturalizado Brasileiro, ou Brasileiro Nascido no Esterior.</li>
+										<li><b>Deficiencias:</b> Se o candidado possuir algum tipo de deficiência, qual seria. </li>
+										<li><b>Bairro:</b> Em que bairro o cadidato mora, dentro do Estadpo de Santa Catarina.</li>
+										<li><b>CEP:</b> Local de sua residencia.</li>
+										<li><b>CODIGO_MUNICIPIO_IBGE:</b>Dado fornecido pelo IBJE.</li>
+										<li><b>NOME_MUNICIPIO:</b> Nome do Município em que reside, dentro do estado de Santa Catarina. </li>
+										<li><b>UF:</b> Para este projeto foi escolhido apenas o UF: SC.</li>
+									</br>
+
+
+									 <table border="1" class="dataframe">
+										<thead>
+										  <tr style="text-align: right;">
+											<th></th>
+											<th>NACIONALIDADE</th>
+											<th>DEFICIENCIAS</th>
+											<th>BAIRRO</th>
+											<th>CEP</th>
+											<th>CODIGO_MUNICIPIO_IBGE</th>
+											<th>NOME_MUNICIPIO</th>
+											<th>UF</th>
+										  </tr>
+										</thead>
+										<tbody>
+										  <tr>
+											<th>0</th>
+											<td>BRASILEIRA</td>
+											<td>NaN</td>
+											<td>AVENTUREIRO</td>
+											<td>89225560.0</td>
+											<td>420910</td>
+											<td>JOINVILLE</td>
+											<td>SC</td>
+										  </tr>
+										  <tr>
+											<th>1</th>
+											<td>BRASILEIRA</td>
+											<td>NaN</td>
+											<td>CENTRO</td>
+											<td>89370000.0</td>
+											<td>421220</td>
+											<td>PAPANDUVA</td>
+											<td>SC</td>
+										  </tr>
+										</tbody>
+									  </table>
+
+									</br>
+									<li><b>	ESTUDANTE:</b> Se é ou não estudante.</li>
+										<li><b>CURSOS_PROFISSIONALIZANTES: </b>Se o candidato possue cursos profissionalizante e qual o segmento. </li>
+										<li><b>GRADUACOES</b>: Se o candidato possue graduação e qual a área. </li>
+										<li><b>POS_GRADUACOES:</b>Se o candidato possue pós-graduação e qual a área.</li>
+										<li><b>IDIOMA: </b> Se o candidato possuem outro idioma e seu nível.</li>
+									</br>
+
+
+									  <table border="1" class="dataframe">
+										<thead>
+										  <tr style="text-align: right;">
+											<th></th>
+											<th>ESCOLARIDADE</th>
+											<th>ESTUDANTE</th>
+											<th>CURSOS_PROFISSIONALIZANTES</th>
+											<th>GRADUACOES</th>
+											<th>POS_GRADUACOES</th>
+											<th>IDIOMAS</th>
+										  </tr>
+										</thead>
+										<tbody>
+										  <tr>
+											<th>0</th>
+											<td>Médio Completo</td>
+											<td>N</td>
+											<td>NaN</td>
+											<td>NaN</td>
+											<td>NaN</td>
+											<td>NaN</td>
+										  </tr>
+										  <tr>
+											<th>1</th>
+											<td>Fundamental Completo</td>
+											<td>N</td>
+											<td>NaN</td>
+											<td>NaN</td>
+											<td>NaN</td>
+											<td>NaN</td>
+										  </tr>
+										</tbody>
+									  </table>
+
+									</br>
+
+									<li><b>HABILITACAO: </b> Se o candidato possuem carteira de habilitação e qual a sua categoria.</li>
+									<li><b>VEICULOS:</b>Se Candidado possue ou não veículo próprio. </li>
+										<li><b>DISP_VIAJAR: </b>Se o candidato tem disponibilidade e realizar viagem.</li>
+										<li><b>DISP_DORMIR_EMP: </b>Se o candidato possue disponibilidade de dormir no local de trabalho.</li>
+										<li><b>DISP_AUSENTAR_DOMIC:</b>Disponibilidade de se ausentar no domicílio. </li>
+									</br>
+
+									  <table border="1" class="dataframe">
+										<thead>
+										  <tr style="text-align: right;">
+											<th></th>
+											<th>HABILITACAO</th>
+											<th>VEICULOS</th>
+											<th>DISP_VIAJAR</th>
+											<th>DISP_DORMIR_EMP</th>
+											<th>DISP_AUSENTAR_DOMIC</th>
+										  </tr>
+										</thead>
+										<tbody>
+										  <tr>
+											<th>0</th>
+											<td>Nenhum</td>
+											<td>N</td>
+											<td>N</td>
+											<td>N</td>
+											<td>N</td>
+										  </tr>
+										  <tr>
+											<th>1</th>
+											<td>Nenhum</td>
+											<td>N</td>
+											<td>N</td>
+											<td>N</td>
+											<td>N</td>
+										  </tr>
+										</tbody>
+									  </table>
+
+									</br>
+									<li><b>PRETENSOES: </b>Quais a pretensões de emprego por candidato.</li>
+									<li><b>MUNICIPIOS_INTERESSE: </b>Quais municípios que o candidato tem interesse em trabalhar.</li></br>
+								</br>
+									  <table border="1" class="dataframe">
+										<thead>
+										  <tr style="text-align: right;">
+											<th></th>
+											<th>PRETENSOES</th>
+											<th>MUNICIPIOS_INTERESSE</th>
+										  </tr>
+										</thead>
+										<tbody>
+										  <tr>
+											<th>0</th>
+											<td>724405-CALDEIREIRO (CHAPAS DE COBRE)(N,6,0,Indiferente)|724435-Funileiro industrial(N,99,0,Indiferente)|731105-MONTADOR DE EQUIPAMENTOS ELETRONICOS (APARELHOS MEDICOS)(N,3,0,Comercial)|784205-Auxiliar de linha de produção(N,0,0,Indiferente)</td>
+											<td>NaN</td>
+										  </tr>
+										  <tr>
+											<th>1</th>
+											<td>142305-Gerente comercial(N,166,0,Indiferente)|521110-Vendedor - no comercio de mercadorias(N,0,0,Comercial)</td>
+											<td>NaN</td>
+										  </tr>
+										</tbody>
+									  </table>
+									</br>
+									<hr />
+
+								 
+										
+										
+										
+										Para o utilização de inriquecimento de dados, foi utilizado o site:
+										<a href="https://www.salario.com.br/tabela-salarial/" target="_blank">salário</a>.</p>
+
+										<table border="1" class="dataframe">
+											<thead>
+											  <tr style="text-align: right;">
+												<th></th>
+												<th>CBO</th>
+												<th>Cargo</th>
+												<th>Carga Horária</th>
+												<th>Piso Salarial</th>
+												<th>Média Salarial</th>
+												<th>Salário Mediana</th>
+												<th>Teto Salarial</th>
+												<th>Salário Hora</th>
+											  </tr>
+											</thead>
+											<tbody>
+											  <tr>
+												<th>0</th>
+												<td>612510</td>
+												<td>Abacaxicultor</td>
+												<td>41</td>
+												<td>1.313,38</td>
+												<td>1.439,02</td>
+												<td>1.134,65</td>
+												<td>2.174,69</td>
+												<td>7,09</td>
+											  </tr>
+											  <tr>
+												<th>1</th>
+												<td>263105</td>
+												<td>Abade</td>
+												<td>40</td>
+												<td>2.983,98</td>
+												<td>3.269,43</td>
+												<td>2.197,00</td>
+												<td>4.940,87</td>
+												<td>16,54</td>
+											  </tr>
+											</tbody>
+										  </table>
+
+										  <p style="text-align: justify;">O Próximo data utilizado para o enriquecimento de base 
+										em nosso consjunto de dados foi o <a href="https://pt.wikipedia.org/wiki/Lista_de_munic%C3%ADpios_de_Santa_Catarina_por_PIB" target="_blank">Wikipedia</a>.</p>
+
+										<table border="1" class="dataframe">
+											<thead>
+											  <tr style="text-align: right;">
+												<th></th>
+												<th>Município</th>
+												<th>PIB em 2018</th>
+											  </tr>
+											</thead>
+											<tbody>
+											  <tr>
+												<th>0</th>
+												<td>Joinville</td>
+												<td>30 785 682</td>
+											  </tr>
+											  <tr>
+												<th>1</th>
+												<td>Itajaí</td>
+												<td>25 413 431</td>
+											  </tr>
+											  <tr>
+												<th>2</th>
+												<td>Florianópolis</td>
+												<td>21 059 561</td>
+											  </tr>
+											  <tr>
+												<th>3</th>
+												<td>Blumenau</td>
+												<td>16 958 783</td>
+											  </tr>
+											  <tr>
+												<th>4</th>
+												<td>São José</td>
+												<td>10 607 482</td>
+											  </tr>
+											</tbody>
+										  </table>
+
+
+
+
+
+									 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+										
+								</div>
+							</section>
+
+						
+
+						<!-- Three -->
+							<section id="three">
+								<div class="inner">
+									<header class="major">
+										<h2>Pré Pocessamento dos Dados</h2>
+									</header>
+									<p> style="text-align: justify;"Iremos trabalhar com o pré-processamento dos dados,
+										manipulação de malores missing, enriquecimento de dados, limpreza da valores missing e engenharia de 
+										atributos</p>
+									<ul class="actions">
+										<li><a href="prepocessing.html" class="button next">Modelagem e Processamento dos Dados.</a></li>
+									</ul>
+								</div>
+							</section>
+
+					</div>
+					</div>
+
+				
+
+				<!-- Footer -->
+				<div id="wrapper">
+
+				<footer id="footer">
+					<div class="inner">
+						
+						<a target="_blank" href="https://github.com/dsadatatree/dsadatatree" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+							<img ALIGN=RIGHT src="images/startup.png"  width= 12% alt="" />
+						</ul>
+						<ul class="copyright">	</br>							
+							&copy; 2021 Untitled. All rights reserved | Design: Data Tree</li></ul>
+					</div>
+				</footer>
+				</div>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

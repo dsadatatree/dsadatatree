@@ -27,12 +27,12 @@
 					<ul class="links">
 						<li><a href="index.html">Home</a></li>
 						<li><a href="landing.html">Quem Somos</a></li>
+						<li><a href="prepocessing.html">Pré Processamento</a></li>
 						<li><a href="exploratory_analysis.html">Análise Exploratória</a></li>
-						<li><a href="predictive_analytics.html">Análise Preditiva</a></li>
+						<li><a href="predictive_analytics.html">Modelo Preditivo</a></li>
 					</ul>
 					<ul class="actions stacked">
-						<li><a target="_blank" href="https://github.com/dsadatatree/dsadatatree" class="button primary fit">Git Hub</a></li>
-
+						<li><a href="summary.html" class="button primary fit">Sumário Executivo</a></li>
 					</ul>
 				</nav>
 
@@ -43,16 +43,20 @@
 							<section id="one">
 								<div class="inner">
 									<header class="major">
-										<h1>Pré processamento dos Dados</h1>
+										<h1>&nbsp;&nbsp;<img src="images/logo.png" width= 4% alt="" />&nbsp;Pré processamento dos Dados</h1>
 									</header>
 									<span ><img src="images/preproc.png" width= 80% alt="" /></span>
 								<p></p>
 									<p>Nesta, parte do projeto iremos pegar o conjunto de dados e realizar algumas limpesa de dados. Não terá nenhuma análise exploratória 
 										apenas, Data Cleaning e Data Wrangling e enriquecimento de dados.</p>
 
-									<h2><strong><span style="text-decoration: underline;">Carregando o nosso conjunto de dados</span></strong></h2>	
-									<p> Para coletar o dados basta entrar no link: <a target="_blank" href="https://sineaberto.economia.gov.br/publico/D_ETL_IMO_EXTRACAO_SINE_ABERTO_TRABALHADORES_SC.zip">SINE</a>, 
-										e realizar o download do arquivo:</p>
+
+									<h2>1. Carregando o nosso conjunto de dados</h2>
+
+									<details><summary>1.1 Para coletar o dados basta entrar no link: <a target="_blank" href="https://sineaberto.economia.gov.br/publico/D_ETL_IMO_EXTRACAO_SINE_ABERTO_TRABALHADORES_SC.zip">SINE</a>, 
+										e realizar o download do arquivo:</summary>
+									</br>
+									
 
 										<pre><code>df = pd.read_csv("Dados/D_ETL_IMO_EXTRACAO_SINE_ABERTO_TRABALHADORES_SC.csv",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sep = ";", encoding='latin-1')<br>df_CBO = pd.read_csv('Dados/cbo.csv',sep=';', encoding = "ISO-8859–1")
 										</code></pre>
@@ -65,6 +69,8 @@
 
 										<p>Abaixo mostramos as 02 primeiras linhas:</p>
 										<pre><code>df.head(2)</code></pre>
+									</details>
+									</br>
 										<table border="1" class="dataframe">
 											<thead>
 											  <tr style="text-align: right;">
@@ -141,6 +147,11 @@
 											</tbody>
 										  </table>	
 										  
+										  
+										</br>
+										<details><summary>1.2 Sample dos Dados</summary>
+										</br>
+										
 										  <P> Agora iremos pegar de forma aleatória uma proporção apenas de 30% do conjunto de Dados, pois o conjunto de dados completo.								  </P>
 										  <pre><code>df_fatia = df.sample(frac=0.3, replace = False, random_state = 1)</code></pre>
 
@@ -148,22 +159,12 @@
 										<p># (1.376.90, 20)</p>
 										<p>Poodemos salvar este novo conjunto de dados para começarmos a trabalhar com pré processamento de dados.</p>
 										<pre><code>df_fatia.to_csv('df_fatia.csv', index = False)</code></pre>
+									</details>
+								</br>
+								<hr />
+										<h2>2. Limpeza dos Dados</h2>
 
-
-
-
-
-
-
-
-
-
-
-
-
-										<h2>1. Limpeza dos Dados</h2>
-
-										<details><summary>1.1 Carregando Bibliotecas e Carregando os dados:</summary>
+										<details><summary>2.1 Carregando Bibliotecas e Carregando os dados:</summary>
 										<p> primeiramente iremos pegar o nosso conjunto de dados já fatiado, para trabalhar com algumas colunas. Para realizar esta etapa precisaremos carregar algumas bibliotecas:</P>
 										<pre><code>import pandas as pd</br>import re</br>import unidecode</br>import matplotlib as plt</code></pre>
 										<h4>Carregando o conjunto de dados</h4>
@@ -173,7 +174,7 @@
 
 									<hr />
 									<br>
-										<details><summary>1.2 Excluindo alguns registros</summary>
+										<details><summary>2.2 Excluindo alguns registros</summary>
 
 											<p>Na coluna <b>ESCOLARIDADE</b> iremos fazer algumas modificações. Primeiramente removemos em nosso conjunto de dados, todos os registros  classificado como:
 												<b>Não identificado </b>(6,43% do nosso conjunto de dados). Conforme podemos ver abaixo:</b></p>
@@ -274,7 +275,7 @@
 
 										<hr />
 										<br>
-										<details><summary>1.3 Criando Colunas Numéricas:</summary>
+										<details><summary>2.3 Criando Colunas Numéricas:</summary>
 
 										<p> Temos a coluna <B>ESTUDANTE</B>, em nosso conjunto de dados, com douas categoria ("S") significando que o candidato é estudante, ou ("N"), significando que o candidato não é 
 										estudante. Iremos criar uma coluna do mesmo tipo, porém numérica, como 1 para estudante e 0 para não estudante.</p>
@@ -394,9 +395,9 @@
 
 
 
-										<h2>2. Enriquecimento de Base</h2>
+										<h2>3. Enriquecimento de Base</h2>
 
-										<details><summary>2.1 Coluna Região:</summary>
+										<details><summary>3.1 Coluna Região:</summary>
 
 											<p>Buscamos conhecer as cidades que fazem parte de cada região no Estado de Santa Catarina.
 												Utilizamos o seguinte <a target="_blank"href="https://www.causc.gov.br/wp-content/uploads/chamadas/2429/10.-ANEXO-VII-Divisao-do-Municipios-do-Estado-de-SC-por-Mesorregioes.pdf">link</a>.</p>
@@ -448,7 +449,7 @@
 							  <hr />
 							  <br>
 
-							  <details><summary>2.2 Pib por Cidade:</summary>
+							  <details><summary>3.2 Pib por Cidade:</summary>
 
 								<p>róximo enriquecimento de dados é acrescentar em nosso conjunto de dados o PIB por cidade, em nosso conjunto de 
 									dados. Utilizamos o <a target="_blank" href="https://pt.wikipedia.org/wiki/Lista_de_munic%C3%ADpios_de_Santa_Catarina_por_PIB">Wikipédia</a>, para coletar tais informações do ano de 2018. Também precisamos primeiramente fazer uma 
@@ -636,7 +637,7 @@
 							<hr />
 							<br>
 
-							<details><summary>2.3 Pib Médio por Cidade:</summary>
+							<details><summary>3.3 Pib Médio por Cidade:</summary>
 
 								<p>Criar novos index e trazer a região para uma coluna</p>
 
@@ -827,9 +828,9 @@
 
 
 
-							<h2>3. Coluna Prestação</h2>
+							<h2>4. Coluna Prestação</h2>
 
-							<details><summary>3.1 Estágio e Horário de Trabalho:</summary>
+							<details><summary>4.1 Estágio e Horário de Trabalho:</summary>
 								<p> Em nosso conjunto de dados possue uma coluna que chama <b> Prestação</b> Ela possuem diversas informações,
 								que teremos que organizar para conseguir obter o de forma separada. primeiramente iremos fazer uma cópia 
 								do nosso conjunto de dados original e depois observar a primeira da coluna prestação:</p>
@@ -948,7 +949,7 @@
 								<hr />
 								<br>
 	
-						  <details><summary>3.2 Cargo Pretendido:</summary>
+						  <details><summary>4.2 Cargo Pretendido:</summary>
 							<p>Agora iremos criar um novo conjunto de dados, para obster todas as pretenções de cargo de cada cidadão.
 								Primeiramente iremos rever o nosso conjunto de dados com todas as profissões cadastradas. Este informações foram coledas
 								<a target="_blank"  href="https://www.salario.com.br/tabela-salarial/">salario.com.br</a>.</p>
@@ -1346,20 +1347,19 @@
 
 				
 
-				<!-- Footer -->
-					<footer id="footer">
-						<div class="inner">
-							<ul class="icons">
-								<h5>Repositório do Github:</h5>
-								<li><a target="_blank" href="https://github.com/dsadatatree/dsadatatree" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-							</ul>
-							<ul class="copyright">
-								<li>&copy; 2021</li><li>Design: Mento e mentorados</li>
-							</ul>
-						</div>
-					</footer>
+			<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					
+					<a target="_blank" href="https://github.com/dsadatatree/dsadatatree" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+						<img ALIGN=RIGHT src="images/startup.png"  width= 12% alt="" />
+					</ul>
+					<ul class="copyright">	</br>							
+						&copy; 2021 Untitled. All rights reserved | Design: Data Tree</li></ul>
+				</div>
+			</footer>
 
-			</div>
+	</div>
 
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
