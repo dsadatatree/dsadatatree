@@ -27,9 +27,9 @@
 					<ul class="links">
 						<li><a href="index.html">Home</a></li>
 						<li><a href="landing.html">Quem Somos</a></li>
+						<li><a href="mentoring.html">Programa de Mentoria</a></li>
+						<li><a href="Database.html">Banco de Dados</a></li>
 						<li><a href="prepocessing.html">Pré Processamento</a></li>
-						<li><a href="exploratory_analysis.html">Análise Exploratória</a></li>
-						<li><a href="predictive_analytics.html">Modelo Preditivo</a></li>
 					</ul>
 					<ul class="actions stacked">
 						<li><a href="summary.html" class="button primary fit">Sumário Executivo</a></li>
@@ -66,7 +66,7 @@
 								<details><summary>1.1 Carregando Bibliotecas e Carregando os dados:</summary>
 									<p> primeiramente iremos pegar o nosso conjunto de dados já modificado, conforme a etapa de pré processamento dos dados,
 										 para trabalhar com algumas colunas. Para realizar esta etapa precisaremos carregar algumas bibliotecas:</P>
-									<pre><code>import pandas as pd</br>import numpy as np</br>import matplotlib.pyplot as plt</br>import matplotlib as m</br>import seaborn as sns</br>%matplotlib inline</br>from scipy.stats import ranksums</br>import glob # busca os arquivos em um caminho (path)</br>import os</br>import re</br>from sklearn.cluster import KMeans</br>from sklearn.preprocessing import StandardScaler</br>from biokit.viz import corrplot</br>import seaborn as sns</br>from sklearn.model_selection import train_test_split</br>import statsmodels.api as sm</br>from matplotlib.colors import ListedColormap</br>from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator</br>from PIL import Image</code></pre>
+									<pre><code>import pandas as pd</br>import numpy as np</br>import matplotlib.pyplot as plt</br>import matplotlib as m</br>import seaborn as sns</br>%matplotlib inline</br>from scipy.stats import ranksums</br>import glob # busca os arquivos em um caminho (path)</br>import os</br>import re</br>from sklearn.cluster import KMeans</br>from sklearn.preprocessing import StandardScaler</br>from biokit.viz import corrplot</br>import seaborn as sns</br>from sklearn.model_selection import train_test_split</br>import statsmodels.api as sm</br>from matplotlib.colors import ListedColormap</br>from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator</br>from PIL import Image</br>import pygal</code></pre>
 
 									<h4>Carregando o conjunto de dados</h4>
 									<p>Os Conjuntos de dados não form forencido aqui, devido ao tamanho, 
@@ -982,8 +982,101 @@
 							</tbody>
 						  </table>
 						</br>
+						<h4>2.9 Proporção Em relação ao Idiomas</h4>
+					</br>
+						<details><summary>Script Python</summary>
+							<pre><code># Idiomas</br></br>maior = 0</br>idiomas = []</br>t_pret = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]</br>for emprego in df_prest.values:</br>&nbsp;&nbsp;&nbsp;&nbsp;aux = emprego[12]</br>&nbsp;&nbsp;&nbsp;&nbsp;qtd_pret = 0</br></br>&nbsp;&nbsp;&nbsp;&nbsp;if isinstance(aux, str):</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;aux = aux + "|"</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ind1 = 0</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ind2 = 0 </br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x = len(aux)</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;while ind1 < x:</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;qtd_pret += 1</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ind2 = aux.find("|", ind1)</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if ind2 == 0:</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ind2 = x + 1</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;idiomas.append(unidecode.unidecode(aux[ind1:ind2].lower()))</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ind1 = ind2 + 1</br></br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t_pret[qtd_pret] += 1</br></x:>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if qtd_pret > maior:</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;maior = qtd_pret</br>&nbsp;&nbsp;&nbsp;&nbsp;else:</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t_pret[0] += 1</br></br>print("\n============================================\n")</br>print("Maior número de idiomas por candidato: ",maior, "\n")</br></br>print("Idiomas   Candidatos")</br>for i in range(len(t_pret)):</br>&nbsp;&nbsp;&nbsp;&nbsp;if t_pret[i] > 0:</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print ("  ", i, "\t", "     ", t_pret[i])</br>print("=" * 35, "\n")</br></br>print ("\nTotal de idiomas: ", len(idiomas))</code></pre>
+
+							</details>
+						</br>
+						<pre>============================================</br></br>Maior número de idiomas por candidato:  5 </br></br>Idiomas   Candidatos</br>0 	       108482</br>1 	       1886</br>2 	       623</br>3 	       87</br>4 	       7</br>5 	       4</br>===================================</pre>
+						<p>Entendendo o nível de cada idioma.</p>
+					</br>
+					<details><summary>Script Python</summary>
+
+					<pre><code>df_x = pd.DataFrame(idiomas)</br>valores = list(df_x.value_counts())</br>Idioma = list(df_x[0].unique())</br>df_idioma = pd.DataFrame({'Idioma': Idioma,</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Qtd": valores})</br>df_idioma['Nível'] = ""</br>for i in range(df_idioma.shape[0]):</br>&nbsp;&nbsp;&nbsp;&nbsp;n = df_idioma.loc[i,'Idioma'].find(' ')</br>&nbsp;&nbsp;&nbsp;&nbsp;df_idioma.loc[i,'Nível'] = df_idioma.loc[i,'Idioma'][n+1:]</br>&nbsp;&nbsp;&nbsp;&nbsp;df_idioma.loc[i,'Idioma'] = df_idioma.loc[i,'Idioma'][:n]</br></br>df2 = df_idioma.groupby(['Idioma', 'Nível'])['Qtd'].sum().unstack('Nível').fillna(0)</br>df2.plot(kind='bar', stacked=True,</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title = 'Nível de Idiomas',</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mark_right = True)</code></pre>
+				</details>
+				</br>				
+
+				<center><img src="images/grafico16.jpg" alt="" /></center>
+
+			</br>
+			<p>Observando o percentual de cada idioma e nosso conjunto de dados.</p>
+					</br>
+					<details><summary>Script Python</summary>
+						<pre><code>colunas = str(df_x.index)</br>colunas = colunas.replace('MultiIndex([(',"").replace(')','').replace('"','').replace('\n','').replace('(','').replace(']','').replace("'",'').replace(",,",',')</br>colunas = colunas.strip()</br>valores = list(df_x.value_counts())</br>Idioma = list(df_x[0].unique())</br>df_idioma = pd.DataFrame({'Idioma': Idioma,</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Qtd. Pessoas": valores})</br>df_idioma['Qtd. Pessoas'] = (df_idioma['Qtd. Pessoas']/df_idioma['Qtd. Pessoas'].sum()*100).round(2)</br>df_idioma.set_index('Idioma', inplace = True)</br>quantidade = []</br></br>for i in df_idioma['Qtd. Pessoas']:</br>&nbsp;&nbsp;&nbsp;&nbsp;quantidade.append(i)</br>posicao = []</br>for i in range(0,10,1): </br>&nbsp;&nbsp;&nbsp;&nbsp;posicao.append(i)</code></pre>
+						</br>
+						<pre><code>#criando uma figure, axes, alterando tamanho</br>fig, ax = plt.subplots(figsize=(15,10))</br>#criando o gráfico de barras</br>sns.barplot(y= df_idioma.index, x= df_idioma['Qtd. Pessoas'], ax=ax, data=df_idioma,  palette='RdPu')</br>#adicionando título</br>ax.set_title("Quantidade de Pessoas e idiomas", fontdict={'fontsize':15})</br>#mudando e nome e tamanho do label x</br>ax.set_xlabel('Idiomas', fontdict={'fontsize':14})</br>#mudando tamanho do label eixo y</br>ax.set_ylabel('')</br>#mudando tamanho dos labels dos ticks</br>ax.tick_params(labelsize=14)</br>#aumentando espessura linha inferior</br>ax.spines['bottom'].set_linewidth(2.5)</br></br>#remoção dos outros três axis</br>for axis in ['top', 'right', 'left']:</br>&nbsp;&nbsp;&nbsp;&nbsp;ax.spines[axis].set_color(None)</br></br>#remoção dos ticks</br>ax.tick_params(axis='x', labelleft=False, left=None)</br></br>#Colocando a quantidade em cada barra</br>for i in range(15):</br>&nbsp;&nbsp;&nbsp;&nbsp;ax.text(y=posicao[i]+0.2, x=quantidade[i]+1, s=str(quantidade[i]),</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fontsize=15)</br></br>#otimizar espaço da figure</br>fig.tight_layout();</code></pre>
+
+						</details>
+					</br>
+
+					<center><img src="images/Imagem1.jpg" width=90% alt="" /></center>
 						<hr />
-						<h2>3. Teste de Hipótese</h2>
+					</br>
+
+					
+				<h4>2.10 Qual Região mais representativo em relação ao PIB?</h4>
+			</br>
+				<details><summary>Script Python</summary>
+					<pre><code>pd_reg_pib = pd.DataFrame((df_prest.groupby('Regiao')['pib'].sum()/(df_prest['pib'].sum())*100).round(2)).reset_index()</code></pre>
+
+					</details>
+				</br>
+
+				<table border="1" class="dataframe">
+					<thead>
+					  <tr style="text-align: right;">
+						<th></th>
+						<th>Regiao</th>
+						<th>pib</th>
+					  </tr>
+					</thead>
+					<tbody>
+					  <tr>
+						<th>0</th>
+						<td>Grande Florianópolis</td>
+						<td>19.82</td>
+					  </tr>
+					  <tr>
+						<th>1</th>
+						<td>Norte</td>
+						<td>32.48</td>
+					  </tr>
+					  <tr>
+						<th>2</th>
+						<td>Oeste</td>
+						<td>3.91</td>
+					  </tr>
+					  <tr>
+						<th>3</th>
+						<td>Serrana</td>
+						<td>1.18</td>
+					  </tr>
+					  <tr>
+						<th>4</th>
+						<td>Sul</td>
+						<td>3.44</td>
+					  </tr>
+					  <tr>
+						<th>5</th>
+						<td>Vale do Iajaí</td>
+						<td>39.17</td>
+					  </tr>
+					</tbody>
+				  </table>
+
+				</br>
+				<details><summary>Script Python</summary>
+					<pre><code>lebels = list(pd_reg_pib['Regiao'])</br>pib = list(pd_reg_pib['pib'])</br>pie_chart = pygal.Pie(inner_radius = .5) </br>pie_chart.title = 'Participação do PIB por região de Santa Catarina'</br>pie_chart.add(lebels[0], pib[0]) </br>pie_chart.add(lebels[1], pib[1]) </br>pie_chart.add(lebels[2], pib[2]) </br>pie_chart.add(lebels[3], pib[3]) </br>pie_chart.add(lebels[4], pib[4]) </br>pie_chart.add(lebels[5], pib[5]) </br></br>pie_chart</code></pre>
+
+					</details>
+				</br>
+						
+				<center><img src="images/grafico17.jpg" width=90% alt="" /></center>
+			</br>
+			
+			<h2>3. Teste de Hipótese</h2>
 
 						<h4>3.1  O salário médio de quem pretende estágio, é menor do que de quem não aceita estágio?</h4>
 						<p>Primeiramente iremos observar como estão distribuido o salário médio em relação as profissões:</p>
@@ -1188,52 +1281,359 @@
 	 Porém podemos aceitar a hipótese nula e considerar que o <b>piso salarial máximo</b>, para quem não aceita estagiar é maior em relação a participante amostral
 	 dos candidados que aceitar estagiar</p>
 
-
-
-
-
-
-
-
-
-
-
-
-
-	<h2>4. Núvem de palavras</h2>
-
-	<center><img src="images/empregos_caixa.jpg" width=90% alt="" /></center>
+	</br>
+	<hr />
+	<h4>3.3 O teto salarial para quem tem nível de escolaridade de superior para cima, é maior do que para quem não tem superioridade?</h4>
+</br>
+<details><summary>Script Python</summary>
+</br>
+<pre><code>sal_teto = df_cbo_cidadao.groupby('id_cidadao')[['Teto Salarial']].agg(['max','std'])</br>sal_teto = sal_teto.stack(level = 0)</br>sal_teto.reset_index(inplace = True)</br>sal_teto = sal_teto[['max','std']]</br>sal_teto = df_prest.join(sal_teto)</code></pre>
+<pre><code>sns.boxplot(x='Nivel_esc', y='max', data=piso_salarial[piso_salarial['max']<10000])</code></pre>
+</details>
+</br>
+<center><img src="images/grafico14.jpg"  alt="" /></center>
+</br>
+<details><summary>Script Python</summary>
+	<pre><code>pd.DataFrame(piso_salarial[['ESCOLARIDADE','Nivel_esc']].value_counts())</code></pre>
+</details>
+</br>
+<table border="1" class="dataframe">
+	<thead>
+	  <tr style="text-align: right;">
+		<th></th>
+		<th></th>
+		<th>0</th>
+	  </tr>
+	  <tr>
+		<th>ESCOLARIDADE</th>
+		<th>Nivel_esc</th>
+		<th></th>
+	  </tr>
+	</thead>
+	<tbody>
+	  <tr>
+		<th>Médio Completo</th>
+		<th>2</th>
+		<td>62794</td>
+	  </tr>
+	  <tr>
+		<th>Fundamental Completo</th>
+		<th>1</th>
+		<td>13838</td>
+	  </tr>
+	  <tr>
+		<th>Médio Incompleto</th>
+		<th>2</th>
+		<td>12853</td>
+	  </tr>
+	  <tr>
+		<th>Superior Completo</th>
+		<th>3</th>
+		<td>8945</td>
+	  </tr>
+	  <tr>
+		<th>Superior Incompleto</th>
+		<th>3</th>
+		<td>7576</td>
+	  </tr>
+	  <tr>
+		<th>Fundamental Incompleto</th>
+		<th>1</th>
+		<td>4041</td>
+	  </tr>
+	  <tr>
+		<th>Analfabeto</th>
+		<th>0</th>
+		<td>446</td>
+	  </tr>
+	  <tr>
+		<th>Especialização</th>
+		<th>3</th>
+		<td>411</td>
+	  </tr>
+	  <tr>
+		<th>Nenhum</th>
+		<th>0</th>
+		<td>93</td>
+	  </tr>
+	  <tr>
+		<th>Mestrado</th>
+		<th>3</th>
+		<td>80</td>
+	  </tr>
+	  <tr>
+		<th>Doutorado</th>
+		<th>3</th>
+		<td>12</td>
+	  </tr>
+	</tbody>
+  </table>
 
 </br>
-	<center><img src="images/empregos.jpg" width=90% alt="" /></center>
+<details><summary>Script Python</summary>
+	<pre><code>classe = pd.DataFrame(piso_salarial['Nivel_esc'].value_counts()/piso_salarial.shape[0]*100).round(2).reset_index().sort_values(by = 'index', ascending = False)</br>classe.columns = ['Classificação Escolaridade','Percentual da População']</br>classe</code></pre>
+</details>
+</br>
+<table border="1" class="dataframe">
+	<thead>
+	  <tr style="text-align: right;">
+		<th></th>
+		<th>Classificação Escolaridade</th>
+		<th>Percentual da População</th>
+	  </tr>
+	</thead>
+	<tbody>
+	  <tr>
+		<th>2</th>
+		<td>3</td>
+		<td>15.32</td>
+	  </tr>
+	  <tr>
+		<th>0</th>
+		<td>2</td>
+		<td>68.10</td>
+	  </tr>
+	  <tr>
+		<th>1</th>
+		<td>1</td>
+		<td>16.09</td>
+	  </tr>
+	  <tr>
+		<th>3</th>
+		<td>0</td>
+		<td>0.49</td>
+	  </tr>
+	</tbody>
+  </table>
+</br>
+
+<p><b>Teste de Hipótese entre os candidatos que possuem ensino superior e os candidade que posuuem até o ensino médio</b></p>
+<p>O valor do p-value é 0.0</p>
 
 
-	<h2>4. Treemaps</h2>
+</br>
+<details><summary>Script Python</summary>
+	<pre><code>c_superior = piso_salarial[piso_salarial['Nivel_esc'] == 3]</br>s_superior = piso_salarial[piso_salarial['Nivel_esc'] != 3]</br>r = ranksums(c_superior['max'], s_superior['max'])</br>print('O valor do p-value é {}'.format(r.pvalue))</code></pre>
+</details>
+</br>
+<p>Conforme podemos observar o teste de hipótese o resultyado do p-value, não podemos rejeitar a hipótese nula, e em relação 
+	a amostra trabalhada, o salário máximo, para que possue salário superior ou acima, é maior do que os candidatos que não possuem ensino superior. 
+</p>
+</br>
+<h4>3.4 A média salarial por região e por nível de escolaridade são igual ou estatísticamente são diferentes?</h4>
+<details><summary>Script Python</summary>
+<pre><code>pd.DataFrame(piso_salarial[['Regiao','Nivel_esc']].value_counts()/piso_salarial.shape[0]*100).round(2).sort_values(by = [0,'Nivel_esc'], ascending = False)</code></pre></details>
+</br>
+
+<table border="1" class="dataframe">
+	<thead>
+	  <tr style="text-align: right;">
+		<th></th>
+		<th></th>
+		<th>Percentual</th>
+	  </tr>
+	  <tr>
+		<th>Regiao</th>
+		<th>Nivel_esc</th>
+		<th></th>
+	  </tr>
+	</thead>
+	<tbody>
+	  <tr>
+		<th>Vale do Iajaí</th>
+		<th>2</th>
+		<td>18.87</td>
+	  </tr>
+	  <tr>
+		<th>Norte</th>
+		<th>2</th>
+		<td>15.23</td>
+	  </tr>
+	  <tr>
+		<th>Grande Florianópolis</th>
+		<th>2</th>
+		<td>12.70</td>
+	  </tr>
+	  <tr>
+		<th>Sul</th>
+		<th>2</th>
+		<td>9.96</td>
+	  </tr>
+	  <tr>
+		<th>Oeste</th>
+		<th>2</th>
+		<td>8.43</td>
+	  </tr>
+	  <tr>
+		<th rowspan="2" valign="top">Vale do Iajaí</th>
+		<th>1</th>
+		<td>4.30</td>
+	  </tr>
+	  <tr>
+		<th>3</th>
+		<td>3.88</td>
+	  </tr>
+	  <tr>
+		<th>Norte</th>
+		<th>1</th>
+		<td>3.81</td>
+	  </tr>
+	  <tr>
+		<th>Grande Florianópolis</th>
+		<th>3</th>
+		<td>3.48</td>
+	  </tr>
+	  <tr>
+		<th>Norte</th>
+		<th>3</th>
+		<td>3.21</td>
+	  </tr>
+	  <tr>
+		<th>Serrana</th>
+		<th>2</th>
+		<td>2.90</td>
+	  </tr>
+	  <tr>
+		<th rowspan="2" valign="top">Oeste</th>
+		<th>1</th>
+		<td>2.90</td>
+	  </tr>
+	  <tr>
+		<th>3</th>
+		<td>2.29</td>
+	  </tr>
+	  <tr>
+		<th>Grande Florianópolis</th>
+		<th>1</th>
+		<td>2.06</td>
+	  </tr>
+	  <tr>
+		<th rowspan="2" valign="top">Sul</th>
+		<th>1</th>
+		<td>2.04</td>
+	  </tr>
+	  <tr>
+		<th>3</th>
+		<td>1.85</td>
+	  </tr>
+	  <tr>
+		<th rowspan="2" valign="top">Serrana</th>
+		<th>1</th>
+		<td>0.98</td>
+	  </tr>
+	  <tr>
+		<th>3</th>
+		<td>0.62</td>
+	  </tr>
+	  <tr>
+		<th>Vale do Iajaí</th>
+		<th>0</th>
+		<td>0.14</td>
+	  </tr>
+	  <tr>
+		<th>Oeste</th>
+		<th>0</th>
+		<td>0.13</td>
+	  </tr>
+	  <tr>
+		<th>Norte</th>
+		<th>0</th>
+		<td>0.08</td>
+	  </tr>
+	  <tr>
+		<th>Grande Florianópolis</th>
+		<th>0</th>
+		<td>0.06</td>
+	  </tr>
+	  <tr>
+		<th>Sul</th>
+		<th>0</th>
+		<td>0.05</td>
+	  </tr>
+	  <tr>
+		<th>Serrana</th>
+		<th>0</th>
+		<td>0.02</td>
+	  </tr>
+	</tbody>
+  </table>
+</br>
+
+  <details><summary>Script Python</summary>
+	<pre><code>classes = [0,1300, 1400,1600,1800,50000]
+		labels = ['Até R$ 1300,00','De R$1.300,00 a R$ 1.400,00', 
+				  'De R$1.400,00 a R$ 1.600,00', 'De R$1.600,00 a R$ 1.800,00', 'Acima de 2 s.m']
+		
+		classe = pd.cut(x = sal_media['mean'], bins = classes, labels = labels)
+		sal_media['Classificação'] = classe
+		sal_media['Classificação'].value_counts(sort = False)</code></pre>
+	
+	</details>
+</br>
+	<pre>Até R$ 1300,00                  9185</br>De R$1.300,00 a R$ 1.400,00    36853</br>De R$1.400,00 a R$ 1.600,00    28174</br>De R$1.600,00 a R$ 1.800,00    13819</br>Acima de 2 s.m                 22799</br>Name: Classificação, dtype: int64</pre>
+
+</br>
+
+	<details><summary>Script Python</summary>
+
+	labels = ['Vale do Iajaí', 'Norte', 'Sul', 'Serrana', 'Oeste',</br>&nbsp;&nbsp;&nbsp;&nbsp;'Grande Florianópolis']</br>mapping = {Região: i for i, Região in enumerate(labels)}</br>key = cid_claf['Região'].map(mapping)</br>cid_claf = cid_claf.iloc[key.argsort()]</br></br>cid_claf.plot(kind='bar', x = 'Região')</br>plt.ylabel('Quantidade de Pessoas')</br>plt.xlabel('Região')</br>plt.title("Pretenção salarial por Salário mínimo e \npor Região de Santa Catarina")</br>plt.show()
+</details>
+</br>
+<center><img src="images/grafico15.jpg"  alt="" /></center>
+
+
+	</br>
+	<p> Abaixo podemos observar o salário médio por Região:</p>
+</br>
+<details><summary>Script Python</summary>
+	<pre><code>piso_salarial.groupby('Regiao')['mean'].mean().round(2)</code></pre></details>
+</br>
+<pre>Regiao</br>Grande Florianópolis    1545.81</br>Norte                   1543.43</br>Oeste                   1495.24</br>Serrana                 1467.28</br>Sul                     1513.60</br>Vale do Iajaí           1541.30</br>Name: mean, dtype: float64</pre>
+</br>
+<p> E abaixo os resultados dos teste de hipótese de média salarial entre as regiões:</p>
+</br>
+<details><summary>Script Python</summary>
+<pre><code>reg_g = piso_salarial[piso_salarial['Regiao'] == 'Grande Florianópolis']</br>reg_n = piso_salarial[piso_salarial['Regiao'] == 'Norte']</br>reg_o = piso_salarial[piso_salarial['Regiao'] == 'Oeste']</br>reg_se = piso_salarial[piso_salarial['Regiao'] == 'Serrana']</br>reg_su = piso_salarial[piso_salarial['Regiao'] == 'Sul']</br>reg_vi = piso_salarial[piso_salarial['Regiao'] == 'Vale do Iajaí']</br>print("Comparando o Salário Médio entre as Regiões")</br>print("===========================================\n")</br></br>r = ranksums(reg_g['mean'], reg_n['mean'])</br>print('Entre Grande Florianópolies e a Reigão Norte \n* O valor do p-value é {}\n'.format(r.pvalue))</br>print("--------------------------------------------\n")</br></br>r = ranksums(reg_o['mean'], reg_se['mean'])</br>print('Entre Região Oeste e a Reigão Serrana \n* O valor do p-value é {}'.format(r.pvalue))</br>print("--------------------------------------------\n")</br></br>r = ranksums(reg_su['mean'], reg_vi['mean'])</br>print('Entre Região Sul e a Reigão do Vale de Itajaí \n* O valor do p-value é {}'.format(r.pvalue))</br>print("===========================================")</code></pre>
+</details>
+</br>
+<pre>Comparando o Salário Médio entre as Regiões</br>===========================================</br></br>Entre Grande Florianópolies e a Reigão Norte </br>* O valor do p-value é 7.504534489971003e-35</br></br>--------------------------------------------</br></br>Entre Região Oeste e a Reigão Serrana </br>* O valor do p-value é 4.112682802233225e-12</br>--------------------------------------------</br></br>Entre Região Sul e a Reigão do Vale de Itajaí </br>* O valor do p-value é 3.5568721380093584e-14</br>===========================================</pre>
+<p>Devemos regeitar a hipótese nula, não podendo afirmar que a média do piso salarial das prentenção são diferente por Região 
+	dentro do Estado de Santa Catarina, conforme nossa amostragem.</p>
+	</br>
+
+	<details><summary>Script Python</summary>
+		<pre><code>fig = px.treemap(prest_media_salarial, path=[px.Constant("Mapeamento por: Região, Escolaridade, e Disponibilidade de Horário para trabalho"),</br>'Regiao_y', 'ESCOLARIDADE','Horario'], values='max')</br>fig.update_traces(root_color="lightgrey")</br>fig.update_layout(margin = dict(t=50, l=25, r=25, b=25))</br>fig.show()</code></pre>
+	
+	
+	</details></br>
 
 	<center><img src="images/newplot.png"  alt="" /></center>
+	<hr />
+
+	
+
+	<h2>4. Os cargos mais procurados no Estado de Santa Catarina</h2>
 
 
-
-
-
-
-
-
-						
-
-
-
-									  
-
-
-										<center><img src="images/grafico9.jpg" width=90% alt="" /></center>
-
-								</br>
+</br>
+<p> Nos empregos mais procurados iremos demonstrar apenas o top 50, para que o gráfico não fique muito extenso. </p></br>
+<details><summary>Script Python</summary>
+<pre><code>prof = list(df_cbo_cidadao['Cargo'].value_counts().head(50).index)</br>quantidade = list(df_cbo_cidadao['Cargo'].value_counts().head(50).values)</br>plt.figure(figsize = (20,25))</br></br>plt.barh(prof, quantidade, color = 'green')</br>plt.title('50 Profissões mais escolhidas', fontsize=24)</br>plt.yticks(fontsize=18)</br>plt.xticks(fontsize=28)</br>plt.xlabel('Quantidade', fontsize=28)</br>plt.ylabel('Profissão', fontsize=28)</br>plt.show()</code></pre></details>
+</br>
+	<center><img src="images/empregos.jpg" width=90% alt="" /></center>
+	<br>
+	<p> Uma outra forma de demonstrar os empregos mais procurados, iremos demonstrar utilizando todo o nosso conjunto de dados
+		uma núvem de palavras. </p>
+	</br>
+	<details><summary>Script Python</summary>
+		<pre><code>df_cbo_cidadao['Cargo'] = df_cbo_cidadao['Cargo'].replace(" ",'_')</br></br>emprego = []</br></br>for num in range(df_cbo_cidadao.shape[0]):</br>&nbsp;&nbsp;&nbsp;&nbsp;name = df_cbo_cidadao.loc[num,'Cargo'].replace(" ",'_')</br>&nbsp;&nbsp;&nbsp;&nbsp;emprego.append(name)  </br>words = emprego  </br></br>all_words = ','.join(w for w in words)</br></br>stopwords = set(STOPWORDS)</br></br>wordcloud = WordCloud(stopwords=stopwords,</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background_color='white', width=1600, #mask=mask1,</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;height=800, max_words=500, max_font_size=1000,</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;min_font_size=1).generate(all_words)</br></br>#configurando forma de apresentação do gráfico e apresentando no notebook.</br>fig, ax = plt.subplots(figsize=(16,8))</br>ax.imshow(wordcloud, interpolation='bilinear')</br>ax.set_axis_off()</br>plt.imshow(wordcloud);</code></pre>
+	
+	</details>
+</br>
+<center><img src="images/empregos_caixa.jpg"  width=90% alt="" /></center>
+</br>
 								<hr />
-								<details><summary>Script Python</summary></details>
-								<pre><code></code></pre>
-								&nbsp;&nbsp;&nbsp;&nbsp;
-
+			
 
 
 
