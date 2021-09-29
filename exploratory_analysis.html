@@ -63,9 +63,14 @@
 
 								<h2>1. Carregando os Dados</h2>
 
-								<details><summary>1.1 Carregando Bibliotecas e Carregando os dados:</summary>
-									<p> primeiramente iremos pegar o nosso conjunto de dados já modificado, conforme a etapa de pré processamento dos dados,
-										 para trabalhar com algumas colunas. Para realizar esta etapa precisaremos carregar algumas bibliotecas:</P>
+								<details><summary>Tópico</summary>
+								</br>
+								<h4>1.1 Carregando Bibliotecas e Carregando os dados:</h4>
+								<p> primeiramente iremos pegar o nosso conjunto de dados já modificado, conforme a etapa de pré processamento dos dados,
+									para trabalhar com algumas colunas. Para realizar esta etapa precisaremos carregar algumas bibliotecas:</P>
+
+								<details><summary>Script Python</summary>
+									
 									<pre><code>import pandas as pd</br>import numpy as np</br>import matplotlib.pyplot as plt</br>import matplotlib as m</br>import seaborn as sns</br>%matplotlib inline</br>from scipy.stats import ranksums</br>import glob # busca os arquivos em um caminho (path)</br>import os</br>import re</br>from sklearn.cluster import KMeans</br>from sklearn.preprocessing import StandardScaler</br>from biokit.viz import corrplot</br>import seaborn as sns</br>from sklearn.model_selection import train_test_split</br>import statsmodels.api as sm</br>from matplotlib.colors import ListedColormap</br>from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator</br>from PIL import Image</br>import pygal</code></pre>
 
 									<h4>Carregando o conjunto de dados</h4>
@@ -76,9 +81,11 @@
 									<pre><code>%reload_ext watermark<br>%watermark -a "Data Scientist: Data Tree" --iversions</code></pre>
 									<pre>Author: Data Scientist: Data Tree</br></br>re         : 2.2.1</br>biokit     : 0.5.0</br>statsmodels: 0.12.2</br>PIL        : 8.3.2</br>numpy      : 1.21.2</br>matplotlib : 3.4.3</br>seaborn    : 0.11.2</br>pandas     : 1.3.3</pre>
 
-									</details>
+									
 									<p>Observando o nosso conjunto de dados:</p>
 									<pre><code>df_cbo_cidadao.head(3)</code></pre>
+								</details>
+							</br>
 
 									<table border="1" class="dataframe">
 										<thead>
@@ -405,10 +412,15 @@
 										</tbody>
 									  </table>
 									  <br>
+
+									  </details>
 									  <hr />
 
 									  <h2>2. Explorando as Variáveis </h2>
 									  <h4>2.1. Quantidade de Candidatos por Nacionalidade</h4>
+									  <details><summary>Tópico</summary>
+									  </br>
+
 									  <details><summary>Script Python</summary>
 										<pre><code>df_nacionalidade = pd.DataFrame(df_empregos['NACIONALIDADE'].value_counts())</br>df_nacionalidade.reset_index(inplace=True)</br>df_nacionalidade = df_nacionalidade.rename(columns = {'index':'Nacionalidade', 'NACIONALIDADE':'Candidatos'})</br>df_nacionalidade['Percentual'] = df_nacionalidade['Candidatos'] / df_nacionalidade['Candidatos'].sum()</br>df_nacionalidade = df_nacionalidade.style.set_table_styles(contorno)</br>df_nacionalidade.format("{:7.2%}", subset=["Percentual"])</br></br>print("\n {}{:^55}{}".format(color.BOLD, 'Quantidade de Candidatos por Nacionalidade', color.END))</br>display(df_nacionalidade)</code></pre>
 									
@@ -456,10 +468,13 @@
 										  </tbody>
 										</table>
 									</br>
+									</details>
 									<hr />
 
 
 									<h4>2.2. Quantidade de Candidatos por Município</h4>
+									<details><summary>Tópico</summary>
+									</br>
 
 									<details><summary>Script Python</summary>
 										df_municipio = pd.DataFrame(df_empregos['NOME_MUNICIPIO'].value_counts())</br>df_municipio.reset_index(inplace=True)</br>df_municipio = df_municipio.rename(columns ={'index':'Nacionalidade', 'NOME_MUNICIPIO':'Qtd.Candidatos'})</br></br>df_municipio['Percentual'] = df_municipio['Qtd.Candidatos'] / df_municipio['Qtd.Candidatos'].sum()</br>df_municipio['Acumulado'] = df_municipio['Percentual'].cumsum()</br>df_municipio = df_municipio.head(9)</br>df_municipio = df_municipio.style.set_table_styles(contorno)</br>df_municipio.format("{:7.2%}", subset=["Percentual", "Acumulado"])</br>display(df_municipio)
@@ -558,8 +573,13 @@
 										</details>
 										<center><img src="images/grafico1.png" alt="" /></center>
 									</br>
+									</details>
+									<hr />
 
 										<h4>2.3. Quantidade de Candidatos por Escolaridade</h4>
+									</br>
+									<details><summary>Tópico</summary>
+									</br>
 										<details><summary>Script Python</summary>
 										<pre><Code>def ordem(x):</br>ordem_esc = {}</br>ordem_esc['Analfabeto'] = 1</br>ordem_esc['Fundamental Incompleto'] = 2</br>ordem_esc['Fundamental Completo'] = 3</br>ordem_esc['Médio Incompleto'] = 4</br>ordem_esc['Médio Completo'] = 5</br>ordem_esc['Superior Incompleto'] = 6</br>ordem_esc['Superior Completo'] = 7</br>ordem_esc['Especialização'] = 8</br>ordem_esc['Mestrado'] = 9</br>ordem_esc['Doutorado'] = 10</br>return ordem_esc.get(x,0)</br></br>df_escolaridade = pd.DataFrame(df_empregos['ESCOLARIDADE'].value_counts())</br>df_escolaridade = df_escolaridade.reset_index().rename(columns={'index':'Escolaridade', 'ESCOLARIDADE':'Qtd. Candidatos'})</br>df_escolaridade['ordem'] = df_escolaridade['Escolaridade'].apply(ordem)</br>df_escolaridade = df_escolaridade[df_escolaridade['ordem'] != 0]</br>df_escolaridade = df_escolaridade.sort_values('ordem')</br>df_escolaridade.drop('ordem', inplace=True, axis=1)</br>df_escolaridade = df_escolaridade.reset_index(drop=True)</br>print(color.BOLD+"\nRelação de escolaridade com quantidade de candidatos\n")</br>df_escolaridade_s = df_escolaridade.style.set_table_styles(contorno)</br></br>display(df_escolaridade_s)</Code></pre>
 										</details>
@@ -636,18 +656,28 @@
 											<center><img src="images/grafico2.png" width=95% alt="" /></center>
 
 								</br>
+								</details>
 								<hr />
+								
 
 
 								<h4>2.4. Percentual de Candidatos que são Estudantes</h4>
+							</br>
+							<details><summary>Tópico</summary>
+							</br>
 
 								<details><summary>Script Python</summary>
 								<pre><code>df_estudante = pd.DataFrame(df_empregos['ESTUDANTE'].value_counts()).rename(columns={'ESTUDANTE':'Estudante'})</br>print("\nÉ Estudante?\n")</br>df_estudante_s = df_estudante.style.set_table_styles(contorno)</br>display(df_estudante_s)</br>fig1, ax1 = plt.subplots()</br>explode = [0, 0.2]</br>ax1.pie(df_estudante['Estudante'], explode=explode, labels=df_estudante.index, autopct='%1.1f%%',</br>&nbsp;&nbsp;&nbsp;&nbsp;shadow=True, startangle=90)</br>ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.</br></br>plt.show()</code></pre>
 								</details>
 								<center><img src="images/grafico3.png" alt="" /></center>
 							</br>
+							</details>
 							<hr />
+
 							<h4>2.5. Quantidade de Candidatos por Quantidade de Cursos Profissionalizantes</h4>
+						</br>
+						<details><summary>Tópico</summary>
+						</br>
 							<details><summary>Script Python</summary>
 							def cursos(x):</br>&nbsp;&nbsp;&nbsp;&nbsp;if isinstance(x, str):</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n = len(x.split('|'))</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return (n if n < 8 else 8)</br>&nbsp;&nbsp;&nbsp;&nbsp;else:</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return 0</br>df_qt_cursos = pd.DataFrame(df_empregos['CURSOS_PROFISSIONALIZANTES'].apply(cursos).value_counts()).reset_index()</br>df_qt_cursos = df_qt_cursos.rename(columns = {'index':'Cursos Profissionalizantes', 'CURSOS_PROFISSIONALIZANTES':'Candidatos'}).iloc[:,[1,0]]</br>df_qt_cursos_s = df_qt_cursos.style.set_table_styles(contorno_azul)</br>display(df_qt_cursos_s)
 							</details>
@@ -796,9 +826,14 @@
 										</tbody>
 									  </table>
 
-									</br>							
+									</br>		
+									</details>					
 										<hr />
+
 									<h4>2.6. Graduações e Quantidade de Candidatos</h4>
+								</br>
+								<details><summary>Tópico</summary>
+								</br>
 									<details><summary>Script Python</summary>
 
 										<pre><code>import unidecode</br>maior = 0</br>graduacoes = []</br>t_pret = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]</br>for emprego in df_empregos.values:</br>&nbsp;&nbsp;&nbsp;&nbsp;aux = emprego[9]</br>&nbsp;&nbsp;&nbsp;&nbsp;qtd_pret = 0</br></br>&nbsp;&nbsp;&nbsp;&nbsp;if isinstance(aux, str):</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;aux = aux + "|"</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ind1 = 0</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ind2 = 0 </br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x = len(aux)</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;while ind1 < x:</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;qtd_pret += 1</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ind2 = aux.find("|", ind1)</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if ind2 == 0:</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ind2 = x + 1</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;graduacoes.append(unidecode.unidecode(aux[ind1:ind2].lower()))</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ind1 = ind2 + 1</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t_pret[qtd_pret] += 1</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if qtd_pret > maior:</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;maior = qtd_pret</br>&nbsp;&nbsp;&nbsp;&nbsp;else:</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t_pret[0] += 1</br></br>print("\n============================================\n")</br>print("Maior número de graduacoes por candidato: ",maior, "\n")</br></br>print("Graduações   Candidatos")</br>for i in range(len(t_pret)):</br>&nbsp;&nbsp;&nbsp;&nbsp;if t_pret[i] > 0:</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print ("  ", i, "\t", "     ", t_pret[i])</br>print("=" * 35, "\n")</br></br>print ("\nTotal de Graduacoes: ", len(graduacoes))</code></pre>
@@ -904,8 +939,15 @@
 										  </tr>
 										</tbody>
 									  </table>
+									</br>  
+									</details>
+									<hr />
+
 
 									  <h4>2.7. Tipo de HAbilitação</h4>
+									</br>
+									<details><summary>Tópico</summary>
+									</br>
 
 									  <details><summary>Script Python</summary>
 										<pre><code>habilitação = df_empregos['HABILITACAO'].value_counts()</br>print("\nPossui que tipo de habilitação?\n")</br>print(habilitação)</code></pre>
@@ -920,8 +962,14 @@
 									</details>
 									<center><img src="images/grafico4.png"  width=90% alt="" /></center>
 								</br>
+								</details>
+								<hr />
+
 
 									<h4>2.8. Em relação ao horário pretendido para trabalhar, existe diferença entre escolaridade?</h4>
+								</br>
+								<details><summary>Tópico</summary>
+								</br>
 									<details><summary>Script Python</summary>
 									<pre><code>graf = pd.DataFrame(df_prest['Horario'].value_counts().reset_index())</br>graf.columns = ['Horario','Quantidade']</br>graf1.plot(x='Horario', y='Quantidade', kind = 'bar', color = 'g')</br>plt.title("Opção de Horário")</br>plt.ylabel("Quantidade de Pessoas")</br>plt.xlabel("Período")</code></pre>
 									</details>
@@ -982,7 +1030,13 @@
 							</tbody>
 						  </table>
 						</br>
+						</details>
+						<hr />
+
+
 						<h4>2.9 Proporção Em relação ao Idiomas</h4>
+					</br>
+					<details><summary>Tópico</summary>
 					</br>
 						<details><summary>Script Python</summary>
 							<pre><code># Idiomas</br></br>maior = 0</br>idiomas = []</br>t_pret = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]</br>for emprego in df_prest.values:</br>&nbsp;&nbsp;&nbsp;&nbsp;aux = emprego[12]</br>&nbsp;&nbsp;&nbsp;&nbsp;qtd_pret = 0</br></br>&nbsp;&nbsp;&nbsp;&nbsp;if isinstance(aux, str):</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;aux = aux + "|"</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ind1 = 0</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ind2 = 0 </br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x = len(aux)</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;while ind1 < x:</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;qtd_pret += 1</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ind2 = aux.find("|", ind1)</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if ind2 == 0:</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ind2 = x + 1</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;idiomas.append(unidecode.unidecode(aux[ind1:ind2].lower()))</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ind1 = ind2 + 1</br></br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t_pret[qtd_pret] += 1</br></x:>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if qtd_pret > maior:</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;maior = qtd_pret</br>&nbsp;&nbsp;&nbsp;&nbsp;else:</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t_pret[0] += 1</br></br>print("\n============================================\n")</br>print("Maior número de idiomas por candidato: ",maior, "\n")</br></br>print("Idiomas   Candidatos")</br>for i in range(len(t_pret)):</br>&nbsp;&nbsp;&nbsp;&nbsp;if t_pret[i] > 0:</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print ("  ", i, "\t", "     ", t_pret[i])</br>print("=" * 35, "\n")</br></br>print ("\nTotal de idiomas: ", len(idiomas))</code></pre>
@@ -1012,11 +1066,15 @@
 					</br>
 
 					<center><img src="images/Imagem1.jpg" width=90% alt="" /></center>
-						<hr />
+						
 					</br>
+					</details>
+					<hr />
 
 					
 				<h4>2.10 Qual Região mais representativo em relação ao PIB?</h4>
+			</br>
+			<details><summary>Tópico</summary>
 			</br>
 				<details><summary>Script Python</summary>
 					<pre><code>pd_reg_pib = pd.DataFrame((df_prest.groupby('Regiao')['pib'].sum()/(df_prest['pib'].sum())*100).round(2)).reset_index()</code></pre>
@@ -1075,10 +1133,16 @@
 						
 				<center><img src="images/grafico17.jpg" width=90% alt="" /></center>
 			</br>
+			</details>
+			<hr />
 			
 			<h2>3. Teste de Hipótese</h2>
+		
 
 						<h4>3.1  O salário médio de quem pretende estágio, é menor do que de quem não aceita estágio?</h4>
+					</br>
+					<details><summary>Tópico</summary>
+					</br>
 						<p>Primeiramente iremos observar como estão distribuido o salário médio em relação as profissões:</p>
 						<details><summary>Script Python</summary>
 						<pre><code>sal_media = df_cbo_cidadao.groupby('id_cidadao')[['Média Salarial']].agg(['min','mean','max','std'])</br>sal_media = sal_media.stack(level = 0)</br>sal_media.reset_index(inplace = True)</br>sal_media = sal_media[['min','mean','max','std']]</br>sal_media.describe()</code></pre>
@@ -1269,7 +1333,15 @@
 	<p>Como o teste deu um valor <b>p-value</b> maior que 0.05, podemos rejeitar a hipótese nula e aceitar a hipótese que o salário médio 
 	das pretenções salariais em relação a média de salário da profissão pretendida é igual para as pessoas que aceitam e rejeitam estagiar.</p>
 	</br>
+	</details>
+	<hr />
+
+
 	<h4>3.2 Em relação ao piso salarial máximo é igual para quem aceita e não aceita estágio?</h4>
+</br>
+<details><summary>Tópico</summary>
+</br>
+
 	<details><summary>Script Python</summary>
 	<pre><code>piso_salarial = df_cbo_cidadao.groupby('id_cidadao')['Piso Salarial'].agg(['min','median','mean','max','std'])</br>piso_salarial = df_prest.join(piso_salarial)</br>c_estagio = piso_salarial[piso_salarial['Estagio'] == "S"]</br>s_estagio = piso_salarial[piso_salarial['Estagio'] == "N"]</br>r = ranksums(c_estagio['max'], s_estagio['max'])</br>print('O valor do p-value é {}'.format(r.pvalue))</code></pre></details>
 	<p>O valor do p-value é 0.0001815241562979713	</p>
@@ -1282,9 +1354,16 @@
 	 dos candidados que aceitar estagiar</p>
 
 	</br>
+	</details>
 	<hr />
+
+
+
 	<h4>3.3 O teto salarial para quem tem nível de escolaridade de superior para cima, é maior do que para quem não tem superioridade?</h4>
 </br>
+									<details><summary>Tópico</summary>
+									</br>
+
 <details><summary>Script Python</summary>
 </br>
 <pre><code>sal_teto = df_cbo_cidadao.groupby('id_cidadao')[['Teto Salarial']].agg(['max','std'])</br>sal_teto = sal_teto.stack(level = 0)</br>sal_teto.reset_index(inplace = True)</br>sal_teto = sal_teto[['max','std']]</br>sal_teto = df_prest.join(sal_teto)</code></pre>
@@ -1420,7 +1499,15 @@
 	a amostra trabalhada, o salário máximo, para que possue salário superior ou acima, é maior do que os candidatos que não possuem ensino superior. 
 </p>
 </br>
+</details>
+<hr />
+
+
 <h4>3.4 A média salarial por região e por nível de escolaridade são igual ou estatísticamente são diferentes?</h4>
+</br>
+<details><summary>Tópico</summary>
+</br>
+
 <details><summary>Script Python</summary>
 <pre><code>pd.DataFrame(piso_salarial[['Regiao','Nivel_esc']].value_counts()/piso_salarial.shape[0]*100).round(2).sort_values(by = [0,'Nivel_esc'], ascending = False)</code></pre></details>
 </br>
@@ -1608,6 +1695,8 @@
 	</details></br>
 
 	<center><img src="images/newplot.png"  alt="" /></center>
+	</dbr>
+	</details>
 	<hr />
 
 	
@@ -1638,7 +1727,7 @@
 
 
 								<ul class="actions">
-									<li><a href="predictive_analytics.html" class="button next">Análise Preditiva</a></li>
+									<li><a href="landing.html" class="button next">Quem Somos</a></li>
 								</ul>
 
 	
