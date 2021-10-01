@@ -47,14 +47,13 @@
 									</header>
 									<span ><img src="images/expl.png" width= 80% alt="" /></span>
 								<p></p>
-									<p style="text-align: justify;">Iremos introduzir a análise exploratória dos dados utilizando a linguagem de programação Python.
-										Análise Exploratória de Dados (EDA - Exploratory Data Analysis) é o processo de investigar os dados com estatísticas e 
-										representações gráficas para melhor compreendê-los. Utilizamos técnicas para tratar valores ausentes que possam existir na
+									<p style="text-align: justify;">A Análise Exploratória de Dados (EDA - Exploratory Data Analysis) é o processo de investigar os dados com 
+										estatísticas e representações gráficas para melhor compreendê-los. Utilizando técnicas para tratar valores ausentes que possam existir na
 										 base de dados, padronizar variáveis que não estão na mesma escala, identificar correlações entre elas e gerar estatísticas 
-										 descritivas. A análise exploratória pode variar conforme o tipo de dados que temos.</br></br>
-										 Na análise estatística clássica, por exemplo, precisamos testar hipóteses já existentes sobre o problema. 
-										 Mas, em projetos de Aprendizado de Máquina raramente já conhecemos o problema por completo e temos hipóteses sobre ele. 
-										 Como o EDA possui uma abordagem mais holística em comparação com a análise clássica, nenhuma suposição antecipada é 
+										 descritivas. A análise exploratória pode variar conforme o tipo de dados.</br></br>
+										 Na análise estatística clássica, por exemplo, há necessidade de testar hipóteses já existentes sobre o problema. 
+										 Mas, em projetos de Aprendizado de Máquina raramente é conhecemos o problema por completo e hipóteses sobre ele. 
+										 Como a EDA possui uma abordagem mais holística em comparação com a análise clássica, nenhuma suposição antecipada é 
 										 necessária, não há perda de informação e é possível obter mais insights porque todos os dados brutos estão disponíveis 
 										 para serem analisados para então começar a criar hipóteses.</p>									
 								<hr />
@@ -66,23 +65,18 @@
 								<details><summary>Tópico</summary>
 								</br>
 								<h4>1.1 Carregando Bibliotecas e Carregando os dados:</h4>
-								<p> primeiramente iremos pegar o nosso conjunto de dados já modificado, conforme a etapa de pré processamento dos dados,
-									para trabalhar com algumas colunas. Para realizar esta etapa precisaremos carregar algumas bibliotecas:</P>
+								<p> Conforme a etapa anterior,  de pré-processamento dos dados,
+									 esta etapa se inicia com o conjunto de dados transformados.</P>
 
 								<details><summary>Script Python</summary>
 									
 									<pre><code>import pandas as pd</br>import numpy as np</br>import matplotlib.pyplot as plt</br>import matplotlib as m</br>import seaborn as sns</br>%matplotlib inline</br>from scipy.stats import ranksums</br>import glob # busca os arquivos em um caminho (path)</br>import os</br>import re</br>from sklearn.cluster import KMeans</br>from sklearn.preprocessing import StandardScaler</br>from biokit.viz import corrplot</br>import seaborn as sns</br>from sklearn.model_selection import train_test_split</br>import statsmodels.api as sm</br>from matplotlib.colors import ListedColormap</br>from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator</br>from PIL import Image</br>import pygal</code></pre>
 
-									<h4>Carregando o conjunto de dados</h4>
-									<p>Os Conjuntos de dados não form forencido aqui, devido ao tamanho, 
-										porém se você acompanhar os processos anteriores conseguir desenvolver o dados conforme apresentado nesse momento. </p>
 									<pre><code>df_cbo_cidadao = pd.read_csv('site/github/Dados/df_cbo_cidadao.csv')</br>df_prest = pd.read_csv('site/github/Dados/df_prest.csv')</code></pre>
-									<p> Agora iremos apresentar os pacotes e as versões utilizadas nesse jupyter note book.</p>
 									<pre><code>%reload_ext watermark<br>%watermark -a "Data Scientist: Data Tree" --iversions</code></pre>
 									<pre>Author: Data Scientist: Data Tree</br></br>re         : 2.2.1</br>biokit     : 0.5.0</br>statsmodels: 0.12.2</br>PIL        : 8.3.2</br>numpy      : 1.21.2</br>matplotlib : 3.4.3</br>seaborn    : 0.11.2</br>pandas     : 1.3.3</pre>
 
 									
-									<p>Observando o nosso conjunto de dados:</p>
 									<pre><code>df_cbo_cidadao.head(3)</code></pre>
 								</details>
 							</br>
@@ -142,7 +136,7 @@
 										</tbody>
 									  </table>
 
-									  <p>Uma análize estattística das variáveis:</p>
+									  <p>Uma análise estatística das variáveis:</p>
 									  <pre><code>df_cbo_cidadao.describe()</code></pre>
 
 									  <table border="1" class="dataframe">
@@ -251,7 +245,6 @@
 										</tbody>
 									  </table>
 
-									  <p>O nosso segunda conjunto de dados</p>
 									  <pre><code>df_prest.head(3)</code></pre>
 									  <table border="1" class="dataframe">
 										<thead>
@@ -944,7 +937,7 @@
 									<hr />
 
 
-									  <h4>2.7. Tipo de HAbilitação</h4>
+									  <h4>2.7. Tipo de Habilitação</h4>
 									</br>
 									<details><summary>Tópico</summary>
 									</br>
@@ -981,8 +974,8 @@
 									</details>
 								</br>
 									<center><img src="images/grafico6.png" width=80% alt="" /></center>
-									<p>Conforme podemos observar o gráfico acima e a tabela abaixo, mas de forma percentual. 
-										Aproximadamente, 99.31% da população não possuem preferencia de horário de trabalho.
+									<p>Conforme podemos observar o gráfico acima e a tabela abaixo
+										aproximadamente, 99.31% da população não possuem preferencia de horário de trabalho.
 									</p>
 									<details><summary>Script Python</summary>
 								<pre><code>hora_trab = pd.DataFrame(df_prest[['Horario']].value_counts()/df_prest.shape[0]*100).round(4)</br>hora_trab = hora_trab.reset_index().sort_values(by = 0, ascending = False)</br>hora_trab.columns = ['Hora de trabalho', 'Perc.']</br>hora_trab</code></pre>
@@ -1055,8 +1048,6 @@
 				<center><img src="images/grafico16.jpg" alt="" /></center>
 
 			</br>
-			<p>Observando o percentual de cada idioma e nosso conjunto de dados.</p>
-					</br>
 					<details><summary>Script Python</summary>
 						<pre><code>colunas = str(df_x.index)</br>colunas = colunas.replace('MultiIndex([(',"").replace(')','').replace('"','').replace('\n','').replace('(','').replace(']','').replace("'",'').replace(",,",',')</br>colunas = colunas.strip()</br>valores = list(df_x.value_counts())</br>Idioma = list(df_x[0].unique())</br>df_idioma = pd.DataFrame({'Idioma': Idioma,</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Qtd. Pessoas": valores})</br>df_idioma['Qtd. Pessoas'] = (df_idioma['Qtd. Pessoas']/df_idioma['Qtd. Pessoas'].sum()*100).round(2)</br>df_idioma.set_index('Idioma', inplace = True)</br>quantidade = []</br></br>for i in df_idioma['Qtd. Pessoas']:</br>&nbsp;&nbsp;&nbsp;&nbsp;quantidade.append(i)</br>posicao = []</br>for i in range(0,10,1): </br>&nbsp;&nbsp;&nbsp;&nbsp;posicao.append(i)</code></pre>
 						</br>
@@ -1143,7 +1134,7 @@
 					</br>
 					<details><summary>Tópico</summary>
 					</br>
-						<p>Primeiramente iremos observar como estão distribuido o salário médio em relação as profissões:</p>
+						<p>Observar-se como estão distribuido o salário médio em relação as profissões:</p>
 						<details><summary>Script Python</summary>
 						<pre><code>sal_media = df_cbo_cidadao.groupby('id_cidadao')[['Média Salarial']].agg(['min','mean','max','std'])</br>sal_media = sal_media.stack(level = 0)</br>sal_media.reset_index(inplace = True)</br>sal_media = sal_media[['min','mean','max','std']]</br>sal_media.describe()</code></pre>
 						
@@ -1351,7 +1342,7 @@
 <p style="text-align: justify;"><b>Conclusão: </b> Conforme podemos observar no teste de hipótese, podemos rejeitar a hipótese 
 	nula e aceitar que nesta amostragem o <b>salário médio</b> dos pretendente que aceita estagiar seja diferente dos candidatos que não aceitam.
 	 Porém podemos aceitar a hipótese nula e considerar que o <b>piso salarial máximo</b>, para quem não aceita estagiar é maior em relação a participante amostral
-	 dos candidados que aceitar estagiar</p>
+	 dos candidados que aceitam estagiar</p>
 
 	</br>
 	</details>
@@ -1359,7 +1350,7 @@
 
 
 
-	<h4>3.3 O teto salarial para quem tem nível de escolaridade de superior para cima, é maior do que para quem não tem superioridade?</h4>
+	<h4>3.3 O teto salarial para quem tem nível de escolaridade de superior para cima, é maior do que para quem não tem curso superior completo?</h4>
 </br>
 									<details><summary>Tópico</summary>
 									</br>
@@ -1495,7 +1486,7 @@
 	<pre><code>c_superior = piso_salarial[piso_salarial['Nivel_esc'] == 3]</br>s_superior = piso_salarial[piso_salarial['Nivel_esc'] != 3]</br>r = ranksums(c_superior['max'], s_superior['max'])</br>print('O valor do p-value é {}'.format(r.pvalue))</code></pre>
 </details>
 </br>
-<p>Conforme podemos observar o teste de hipótese o resultyado do p-value, não podemos rejeitar a hipótese nula, e em relação 
+<p>Conforme podemos observar o teste de hipótese o resultado do p-value, não podemos rejeitar a hipótese nula, e em relação 
 	a amostra trabalhada, o salário máximo, para que possue salário superior ou acima, é maior do que os candidatos que não possuem ensino superior. 
 </p>
 </br>
@@ -1684,7 +1675,7 @@
 </details>
 </br>
 <pre>Comparando o Salário Médio entre as Regiões</br>===========================================</br></br>Entre Grande Florianópolies e a Reigão Norte </br>* O valor do p-value é 7.504534489971003e-35</br></br>--------------------------------------------</br></br>Entre Região Oeste e a Reigão Serrana </br>* O valor do p-value é 4.112682802233225e-12</br>--------------------------------------------</br></br>Entre Região Sul e a Reigão do Vale de Itajaí </br>* O valor do p-value é 3.5568721380093584e-14</br>===========================================</pre>
-<p>Devemos regeitar a hipótese nula, não podendo afirmar que a média do piso salarial das prentenção são diferente por Região 
+<p>Devemos rejeitar a hipótese nula, não podendo afirmar que a média do piso salarial das prentenção são diferente por Região 
 	dentro do Estado de Santa Catarina, conforme nossa amostragem.</p>
 	</br>
 
@@ -1705,14 +1696,12 @@
 
 
 </br>
-<p> Nos empregos mais procurados iremos demonstrar apenas o top 50, para que o gráfico não fique muito extenso. </p></br>
 <details><summary>Script Python</summary>
 <pre><code>prof = list(df_cbo_cidadao['Cargo'].value_counts().head(50).index)</br>quantidade = list(df_cbo_cidadao['Cargo'].value_counts().head(50).values)</br>plt.figure(figsize = (20,25))</br></br>plt.barh(prof, quantidade, color = 'green')</br>plt.title('50 Profissões mais escolhidas', fontsize=24)</br>plt.yticks(fontsize=18)</br>plt.xticks(fontsize=28)</br>plt.xlabel('Quantidade', fontsize=28)</br>plt.ylabel('Profissão', fontsize=28)</br>plt.show()</code></pre></details>
 </br>
 	<center><img src="images/empregos.jpg" width=90% alt="" /></center>
 	<br>
-	<p> Uma outra forma de demonstrar os empregos mais procurados, iremos demonstrar utilizando todo o nosso conjunto de dados
-		uma núvem de palavras. </p>
+	<p> Uma outra forma de demonstrar os empregos mais procurados. </p>
 	</br>
 	<details><summary>Script Python</summary>
 		<pre><code>df_cbo_cidadao['Cargo'] = df_cbo_cidadao['Cargo'].replace(" ",'_')</br></br>emprego = []</br></br>for num in range(df_cbo_cidadao.shape[0]):</br>&nbsp;&nbsp;&nbsp;&nbsp;name = df_cbo_cidadao.loc[num,'Cargo'].replace(" ",'_')</br>&nbsp;&nbsp;&nbsp;&nbsp;emprego.append(name)  </br>words = emprego  </br></br>all_words = ','.join(w for w in words)</br></br>stopwords = set(STOPWORDS)</br></br>wordcloud = WordCloud(stopwords=stopwords,</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background_color='white', width=1600, #mask=mask1,</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;height=800, max_words=500, max_font_size=1000,</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;min_font_size=1).generate(all_words)</br></br>#configurando forma de apresentação do gráfico e apresentando no notebook.</br>fig, ax = plt.subplots(figsize=(16,8))</br>ax.imshow(wordcloud, interpolation='bilinear')</br>ax.set_axis_off()</br>plt.imshow(wordcloud);</code></pre>

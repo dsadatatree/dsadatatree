@@ -47,11 +47,11 @@
 									</header>
 									<span ><img src="images/preproc.png" width= 80% alt="" /></span>
 								<p></p>
-									<p>Nesta, parte do projeto iremos pegar o conjunto de dados e realizar algumas limpesa de dados. Não terá nenhuma análise exploratória 
-										apenas, Data Cleaning e Data Wrangling e enriquecimento de dados.</p>
+									<p>Nesta parte do projeto será realizado a modelagem de dados, como: Data Cleaning e Data Wrangling 
+										e enriquecimento da dados, utilizando linguagem Python para futura análise exploratória.</p>
 
 
-									<h2>1. Carregando o nosso conjunto de dados</h2>
+									<h2>1. Carregando a Base de Dados</h2>
 
 									<details><summary>1.1 Para coletar o dados basta entrar no link: <a target="_blank" href="https://sineaberto.economia.gov.br/publico/D_ETL_IMO_EXTRACAO_SINE_ABERTO_TRABALHADORES_SC.zip">SINE</a>, 
 										e realizar o download do arquivo:</summary>
@@ -61,13 +61,13 @@
 										<pre><code>df = pd.read_csv("Dados/D_ETL_IMO_EXTRACAO_SINE_ABERTO_TRABALHADORES_SC.csv",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sep = ";", encoding='latin-1')<br>df_CBO = pd.read_csv('Dados/cbo.csv',sep=';', encoding = "ISO-8859–1")
 										</code></pre>
 
-										<p>Ao colocar o comando abaixo, iremos observar a quantidade de linhas e contidade de colunas</p>
+										<p>Ao colocar o comando abaixo, observa-se a quantidade de observações e variáveis.</p>
 										<pre><code>df.shape</code></pre>
 										<p># (458965, 20)</p>
 
-										<p> Temos que o nosso conjunto de dados possuem 4.589.65 observações (linhas) e 20 variáveis (colunas)</p>
+										<p> O conjunto de dados possuem 458.965 observações (linhas) e 20 variáveis (colunas)</p>
 
-										<p>Abaixo mostramos as 02 primeiras linhas:</p>
+										<p>Abaixo segue amostra do conjunto:</p>
 										<pre><code>df.head(2)</code></pre>
 									</details>
 									</br>
@@ -152,12 +152,12 @@
 										<details><summary>1.2 Sample dos Dados</summary>
 										</br>
 										
-										  <P> Agora iremos pegar de forma aleatória uma proporção apenas de 30% do conjunto de Dados, pois o conjunto de dados completo.								  </P>
+										  <P> Amostra aleatória com proporção de 30% do conjunto de Dados.								  </P>
 										  <pre><code>df_fatia = df.sample(frac=0.3, replace = False, random_state = 1)</code></pre>
 
 										  <pre><code>df_fatia.shape</code></pre>
-										<p># (1.376.90, 20)</p>
-										<p>Poodemos salvar este novo conjunto de dados para começarmos a trabalhar com pré processamento de dados.</p>
+										<p># (137.690, 20)</p>
+										<p>Para salvar este novo conjunto de dados, basta seguir a instrução abaixo.</p>
 										<pre><code>df_fatia.to_csv('df_fatia.csv', index = False)</code></pre>
 									</details>
 								</br>
@@ -165,10 +165,10 @@
 										<h2>2. Limpeza dos Dados</h2>
 
 										<details><summary>2.1 Carregando Bibliotecas e Carregando os dados:</summary>
-										<p> primeiramente iremos pegar o nosso conjunto de dados já fatiado, para trabalhar com algumas colunas. Para realizar esta etapa precisaremos carregar algumas bibliotecas:</P>
+										<p> Para iniciar o trabalho é preciso carregar algumas bibliotecas:</P>
 										<pre><code>import pandas as pd</br>import re</br>import unidecode</br>import matplotlib as plt</code></pre>
 										<h4>Carregando o conjunto de dados</h4>
-										<p>O Conjunto de dados <b>pib_cidade.csv</b>, está ne repositóri do github, porém foi retirado do <a target="_blank" href="https://pt.wikipedia.org/wiki/Lista_de_munic%C3%ADpios_de_Santa_Catarina_por_PIB">Wikipedioa</a>.</p>
+										<p>O conjunto de dados <b>pib_cidade.csv</b>, retirado do <a target="_blank" href="https://pt.wikipedia.org/wiki/Lista_de_munic%C3%ADpios_de_Santa_Catarina_por_PIB">Wikipedia</a>, consta no Github, repositório do projeto.</p>
 										<pre><code>df_fatia = pd.read_csv('df_fatia.csv')</br>pib = pd.read_csv('pib_cidade.csv', sep = ';', encoding='latin1')</code></pre>
 										</details>
 
@@ -176,13 +176,13 @@
 									<br>
 										<details><summary>2.2 Excluindo alguns registros</summary>
 
-											<p>Na coluna <b>ESCOLARIDADE</b> iremos fazer algumas modificações. Primeiramente removemos em nosso conjunto de dados, todos os registros  classificado como:
+											<p>Na coluna <b>ESCOLARIDADE</b> foi removido, todos os registros  classificado como:
 												<b>Não identificado </b>(6,43% do nosso conjunto de dados). Conforme podemos ver abaixo:</b></p>
 												<table border="1" class="dataframe">
 													<thead>
 													  <tr style="text-align: right;">
 														<th></th>
-														<th>ESCOLARIDADE</th>
+														<th>Perc. (%)</th>
 													  </tr>
 													</thead>
 													<tbody>
@@ -236,13 +236,13 @@
 													  </tr>
 													</tbody>
 												  </table>
-												  <p>Na coluna <b>NACIONALIDADE</b> também removamos todos os registro que goram classificados como 
-													<b>IGNORADOS</b> (11,76% do nosso conjunto de dados). Conforme podemos ver abaixo:</p>
+												  <p>Na coluna <b>NACIONALIDADE</b> também removido todos os registro que foram classificados como 
+													<b>IGNORADOS</b> (11,76% do nosso conjunto de dados). </p>
 													<table border="1" class="dataframe">
 														<thead>
 														  <tr style="text-align: right;">
 															<th></th>
-															<th>NACIONALIDADE</th>
+															<th>Perc. (%)</th>
 														  </tr>
 														</thead>
 														<tbody>
@@ -277,10 +277,10 @@
 										<br>
 										<details><summary>2.3 Criando Colunas Numéricas:</summary>
 
-										<p> Temos a coluna <B>ESTUDANTE</B>, em nosso conjunto de dados, com douas categoria ("S") significando que o candidato é estudante, ou ("N"), significando que o candidato não é 
-										estudante. Iremos criar uma coluna do mesmo tipo, porém numérica, como 1 para estudante e 0 para não estudante.</p>
+										<p> Na coluna <B>ESTUDANTE</B>, possue duas classificações: Estudante ("S") e Não Estudante ("N"). Será criada uma coluna 
+											do tipo numérica, sendo 1 para estudante e 0 para não estudante.</p>
 										<pre><code>df['Estudante'] = None</br>df['Estudante'] = df['ESTUDANTE'].apply(lambda x: 1 if x == 'S' else 0)</code></pre>
-										<p>Podemos observar a criação da nova coluna abaixo:</p>
+										<p>Segue a coluna abaixo:</p>
 										<pre><code>df_fatia[['ESTUDANTE','Estudante']].tail(3)</code></pre>
 										<table border="1" class="dataframe">
 											<thead>
@@ -309,19 +309,16 @@
 											</tbody>
 										  </table>
 
-										  Agora vamos observar a quantidade de estudante para não estudante:
+										  Dados a quantidade de estudante não estudante do conjutno de dados:
 										  <pre><code>df_fatia['Estudante'].value_counts()</code></pre>
 										<p>#  0 &nbsp;&nbsp;&nbsp; 125131 </br># 1 &nbsp;&nbsp;&nbsp;12558</br>Name: Estudante, dtype: int 64</p>
 
 										<pre><code>estudante = df_fatia['ESTUDANTE'].value_counts()</br>ax = estudante.plot(kind = 'barh', color = ['red','blue'], title = 'Quantidade de Cantidade Estudantes e \n Não Estudantes',</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xlabel = "Categoria")</code></pre>
 										<img  src="images/estudante.01.png",   width= 70% alt="" />
 
-										<p>O mesmof eito pela categoria Estudante feremos com as categorias: <b>'VEICULOS', 'DISP_VIAJAR', 'DISP_DORMIR_EMP', 'DISP_AUSENTAR_DOMIC' e 'ESCOLARIDADE'.</b></p>
+										<p>O mesmo  ocorrido para a variável Estudante serão desenvolvido nas seguintes variáveis: <b>'VEICULOS', 'DISP_VIAJAR', 'DISP_DORMIR_EMP', 'DISP_AUSENTAR_DOMIC' e 'ESCOLARIDADE'.</b></p>
 										<pre><code>df_fatia['Veiculo'] = None</br>df_fatia['Veiculo'] = df_fatia['VEICULOS'].apply(lambda x: 1 if x == 'S' else 0)</br></br>df_fatia['Viajar'] = None</br>df_fatia['Viajar'] = df_fatia['DISP_VIAJAR'].apply(lambda x: 1 if x == 'S' else 0)</br></br>df_fatia['Dormir_local'] = None</br>df_fatia['Dormir_local'] = df_fatia['DISP_DORMIR_EMP'].apply(lambda x: 1 if x == 'S' else 0)</br></br>df_fatia['Ausentar_Domic'] = None</br>df_fatia['Ausentar_Domic'] = df_fatia['DISP_AUSENTAR_DOMIC'].apply(lambda x: 1 if x == 'S' else 0)</code></pre>
-										<p>A análisde exploratória será demonstrado em outra página, esta página tem como propósito apenas demonstrar o préprocessamento de dados.</p>
 										
-										  <p> Depois categorizamos de 0 a 3, sendo respectivamente: analfabeto, ensino fundamental, ensino médico e superior e outras categorias.</p>
-
 										  <table border="1" class="dataframe">
 											 <tr>
 												<th>ESCOLARIDADE</th>
@@ -399,9 +396,9 @@
 
 										<details><summary>3.1 Coluna Região:</summary>
 
-											<p>Buscamos conhecer as cidades que fazem parte de cada região no Estado de Santa Catarina.
-												Utilizamos o seguinte <a target="_blank"href="https://www.causc.gov.br/wp-content/uploads/chamadas/2429/10.-ANEXO-VII-Divisao-do-Municipios-do-Estado-de-SC-por-Mesorregioes.pdf">link</a>.</p>
-								Criamos um dicionário de dados em python, e criamos a coluna região:</p>
+											<p>Categorização das cidades em regiões municipais no Estado de Santa Catarina, Conforme o seguinte 
+												<a target="_blank"href="https://www.causc.gov.br/wp-content/uploads/chamadas/2429/10.-ANEXO-VII-Divisao-do-Municipios-do-Estado-de-SC-por-Mesorregioes.pdf">link</a>.</p>
+								Segue o dicionário de dados com a coluna região, criada:</p>
 								<pre><code>reg = {'ararangua':'sul','armazem':'sul','balneario arroio do silva':'sul','balneario gaivota':'sul','balneario rincao':'sul','braco do norte':'sul','capivari de baixo':'sul','cocal do sul':'sul','criciuma':'sul','ermo':'sul','forquilhinha':'sul','garopaba':'sul','grao para':'sul','gravatal':'sul','icara':'sul','imarui':'sul','imbituba':'sul','jacinto machado':'sul','jaguaruna':'sul','laguna':'sul','lauro muller':'sul','maracaja':'sul','meleiro':'sul','morro da fumaca':'sul','morro grande':'sul','nova veneza':'sul','orleans':'sul','passo de torres':'sul','pedras grandes':'sul','pescaria brava':'sul','praia grande':'sul','rio fortuna':'sul','sangao':'sul','santa rosa de lima':'sul','santa rosa do sul':'sul','sao joao do sul':'sul','sao ludgero':'sul','sao martinho':'sul','sideropolis':'sul','sombrio':'sul','timbe do sul':'sul','treviso':'sul','treze de maio':'sul','tubarao':'sul','turvo':'sul','urussanga':'sul',</br>'aguas mornas':'grande florianópolis','alfredo wagner':'grande florianópolis','angelina':'grande florianópolis','anitapolis':'grande florianópolis','antonio carlos':'grande florianópolis','biguacu':'grande florianópolis','canelinha':'grande florianópolis','florianopolis':'grande florianópolis','governador celso ramos':'grande florianópolis','leoberto leal':'grande florianópolis','major gercino':'grande florianópolis','nova trento':'grande florianópolis','palhoca':'grande florianópolis','paulo lopes':'grande florianópolis','rancho queimado':'grande florianópolis','santo amaro da imperatriz':'grande florianópolis','sao bonifacio':'grande florianópolis','sao joao batista':'grande florianopolis','sao jose':'grande florianópolis','sao pedro de alcantara':'grande florianópolis','tijucas':'grande florianópolis',</br>'araquari':'norte','balneario barra do sul':'norte','bela vista do toldo':'norte','campo alegre':'norte','canoinhas':'norte','corupa':'norte','garuva':'norte','guaramirim':'norte','irineppolis':'norte','itaiopolis':'norte','itapoa':'norte','jaragua do sul':'norte','joinville':'norte','mafra':'norte','major vieira':'norte','massaranduba':'norte','monte castelo':'norte','papanduva':'norte','porto uniao':'norte','rio negrinho':'norte','santa terezinha':'norte','sao bento do sul':'norte','sao francisco do sul':'norte','schroeder':'norte','timbo grande':'norte','tres barras':'norte',</br>'abelardo luz': 'oeste','agua doce': 'oeste','aguas de chapeco': 'oeste','aguas frias': 'oeste','alto bela vista': 'oeste','anchieta': 'oeste','arabuta': 'oeste','arroio trinta': 'oeste','arvoredo': 'oeste','bandeirante': 'oeste','barra bonita': 'oeste','belmonte': 'oeste','bom jesus': 'oeste','bom jesus do oeste': 'oeste','cacador': 'oeste','caibi': 'oeste','calmon': 'oeste','campo ere': 'oeste','capinzal': 'oeste','catanduvas': 'oeste','caxambu do sul': 'oeste','chapeco': 'oeste','concordia': 'oeste','cordilheira alta': 'oeste','coronel freitas': 'oeste','coronel martins': 'oeste','cunha pora': 'oeste','cunhatai': 'oeste','descanso': 'oeste','dionisio cerqueira': 'oeste','entre rios': 'oeste','erval velho': 'oeste','faxinal dos guedes': 'oeste','flor do sertao': 'oeste','formosa do sul': 'oeste','fraiburgo': 'oeste','galvao': 'oeste','guaraciaba': 'oeste','guaruja do sul': 'oeste','guatambu': 'oeste',"herval d oeste": 'oeste','ibiam': 'oeste','ibicare': 'oeste','iomere': 'oeste','ipira': 'oeste','ipora do oeste': 'oeste','ipuacu': 'oeste','ipumirim': 'oeste','iraceminha': 'oeste','irani': 'oeste','irati': 'oeste','ita': 'oeste','itapiranga': 'oeste','jabora': 'oeste','jardinopolis': 'oeste','joacaba': 'oeste','jupia': 'oeste','lacerdopolis': 'oeste','lajeado grande': 'oeste','lebon regis': 'oeste','lindoia do sul': 'oeste','luzerna': 'oeste','macieira': 'oeste','maravilha': 'oeste','marema': 'oeste','matos costa': 'oeste','modelo': 'oeste','mondai': 'oeste','nova erechim': 'oeste','nova itaberaba': 'oeste','novo horizonte': 'oeste','ouro': 'oeste','ouro verde': 'oeste','paial': 'oeste','palma sola': 'oeste','palmitos': 'oeste','paraiso': 'oeste','passos maia': 'oeste','peritiba': 'oeste','pinhalzinho': 'oeste','pinheiro preto': 'oeste','piratuba': 'oeste','planalto alegre': 'oeste','ponte serrada': 'oeste','presidente castelo branco': 'oeste','princesa': 'oeste','quilombo': 'oeste','rio das antas': 'oeste','riqueza': 'oeste','romelandia': 'oeste','saltinho': 'oeste','salto veloso': 'oeste','santa helena': 'oeste','santa terezinha do progresso': 'oeste','santiago do sul': 'oeste','sao bernardino': 'oeste','sao carlos': 'oeste','sao domingos': 'oeste','sao joao do oeste': 'oeste','sao jose do cedro': 'oeste','sao lourenco do oeste': 'oeste','sao miguel da boa vista': 'oeste','sao miguel do oeste': 'oeste','saudades': 'oeste','seara': 'oeste','serra alta': 'oeste','sul brasil': 'oeste','tangara': 'oeste','tigrinhos': 'oeste','treze tilias': 'oeste','tunapolis': 'oeste','uniao do oeste': 'oeste','vargeao': 'oeste','vargem bonita': 'oeste','videira': 'oeste','xanxere': 'oeste','xavantina': 'oeste','xaxim': 'oeste',</br>'abdon batista' : 'serrtana','anita garibaldi' : 'serrtana','bocaina do sul' : 'serrtana','bom jardim da serra' : 'serrtana','bom retiro' : 'serrtana','brunopolis' : 'serrtana','campo belo do sul' : 'serrtana','campos novos' : 'serrtana','capao alto' : 'serrtana','celso ramos' : 'serrtana','cerro negro' : 'serrtana','correia pinto' : 'serrtana','curitibanos' : 'serrtana','frei rogerio' : 'serrtana','lages' : 'serrtana','monte carlo' : 'serrtana','otacilio costa' : 'serrtana','painel' : 'serrtana','palmeira' : 'serrtana','ponte alta' : 'serrtana','ponte alta do norte' : 'serrtana','rio rufino' : 'serrtana','santa cecilia' : 'serrtana','sao cristovao do sul' : 'serrtana','sao joaquim' : 'serrtana','sao jose do cerrito' : 'serrtana','urubici' : 'serrtana','urupema' : 'serrtana','vargem' : 'serrtana','zortea' : 'serrtana',</br>'agrolandia' : 'vale do iajaí','agronomica' : 'vale do iajaí','apiuna' : 'vale do iajaí','ascurra' : 'vale do iajaí','atalanta' : 'vale do iajaí','aurora' : 'vale do iajaí','balneario camboriu' : 'vale do iajaí','balneario picarras' : 'vale do iajaí','barra velha' : 'vale do iajaí','benedito novo' : 'vale do iajaí','blumenau' : 'vale do iajaí','bombinhas' : 'vale do iajaí','botuvera' : 'vale do iajaí','braco do trombudo' : 'vale do iajaí','brusque' : 'vale do iajaí','camboriu': 'vale do iajaí','chapadao do lageado' : 'vale do iajaí','dona emma' : 'vale do iajaí','doutor pedrinho' : 'vale do iajaí','gaspar' : 'vale do iajaí','guabiruba' : 'vale do iajaí','ibirama' : 'vale do iajaí','ilhota' : 'vale do iajaí','imbuia' : 'vale do iajaí','indaial' : 'vale do iajaí','itajai' : 'vale do iajaí','itapema' : 'vale do iajaí','ituporanga' : 'vale do iajaí','jose boiteux' : 'vale do iajaí','laurentino' : 'vale do iajaí','lontras' : 'vale do iajaí','luiz alves' : 'vale do iajaí','mirim doce' : 'vale do iajaí','navegantes' : 'vale do iajaí','penha' : 'vale do iajaí','petrolandia' : 'vale do iajaí','pomerode' : 'vale do iajaí','porto belo' : 'vale do iajaí','pouso redondo' : 'vale do iajaí','presidente getulio' : 'vale do iajaí','presidente nereu' : 'vale do iajaí','rio do campo' : 'vale do iajaí','rio do oeste' : 'vale do iajaí','rio do sul' : 'vale do iajaí','rio dos cedros' : 'vale do iajaí','rodeio' : 'vale do iajaí','salete' : 'vale do iajaí','sao joao do itaperiu' : 'vale do iajaí','taio' : 'vale do iajaí','timbo' : 'vale do iajaí','trombudo central' : 'vale do iajaí','vidal ramos' : 'vale do iajaí','vitor meireles' : 'vale do iajaí','witmarsum' : 'vale do iajaí',</br>'irineopolis':'Norte', 'presidente castello branco':'Oeste'      
 							  }</code></pre>
 							  <pre><code>df_fatia['Regiao'] = df_fatia['NOME_MUNICIPIO']</br>df_fatia['Regiao'] = df_fatia['Regiao'].str.lower()</br>df_fatia['Regiao'] = df_fatia['Regiao'].map(reg)</br>df_fatia['Regiao'] = df_fatia['Regiao'].map({'norte':'Norte',</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'sul':'Sul',</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'grande florianópolis':'Grande Florianópolis',</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'oeste':'Oeste',</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'serrtana': 'Serrana',</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'vale do iajaí': 'Vale do Iajaí'})</code></pre>
@@ -449,11 +446,11 @@
 							  <hr />
 							  <br>
 
-							  <details><summary>3.2 Pib por Cidade:</summary>
+							  <details><summary>3.2 PIB por Cidade:</summary>
 
-								<p>róximo enriquecimento de dados é acrescentar em nosso conjunto de dados o PIB por cidade, em nosso conjunto de 
-									dados. Utilizamos o <a target="_blank" href="https://pt.wikipedia.org/wiki/Lista_de_munic%C3%ADpios_de_Santa_Catarina_por_PIB">Wikipédia</a>, para coletar tais informações do ano de 2018. Também precisamos primeiramente fazer uma 
-								limpeza dos dados, pois ele veio com uma formatação não numérica. </p>
+								<p>Para o enriquecimento da base foi acrescentado a variável PIB por cidade, conforme o <a target="_blank" href="https://pt.wikipedia.org/wiki/Lista_de_munic%C3%ADpios_de_Santa_Catarina_por_PIB">link (Wikipédia)</a>.
+									Para coletar tais informações, houve a necessidade de fazer uma 
+								limpeza dos dados, devido não estar em formação numérica. </p>
 								</p>
 								<pre><code>print(pib.head())</code></pre>
 								<table border="1" class="dataframe">
@@ -506,7 +503,9 @@
 								<pre><code>pib.drop(columns=['PIB em 2018'], inplace = True)</code></pre>
 								<p> Criando a coluna <b>Região</b>, com os caracteris todos em minúsculo. </p>
 								<pre><code>pib['Regiao'] = pib['Município'].str.lower()</code></pre>
-								<p> Coprrigindo os nomes de todas as cidade do estado de santa Catarina.</p>
+
+								<p> Manipulando os nomes de todas as cidade do estado de Santa Catarina.</p>
+
 								<pre><code>pib['Regiao']  = pib['Regiao'].map({<br>'joinville' : 'joinville',<br>'itajaí' :  'itajai',<br>'florianópolis' :  'florianopolis',<br>'blumenau' :  'blumenau',<br>'são josé' :  'sao jose',<br>'chapecó' :  'chapeco',<br>'jaraguá do sul' :  'jaragua do sul',<br>'criciúma' :  'criciuma',<br>'brusque' :  'brusque',<br>'balneário camboriú' :  'balneario camboriu',<br>'palhoça' :  'palhoca',<br>...<br>'coronel martins' :  'coronel martins',<br>'matos costa' :  'matos costa',<br>'flor do sertão' :  'flor do sertao',<br>'cunhataí' :  'cunhatai',<br>'barra bonita' :  'barra bonita',<br>'irati' :  'irati',<br>'paial' :  'paial',<br>'são miguel da boa vista' :  'sao miguel da boa vista',<br>'jardinópolis' :  'jardinopolis',<br>'santiago do sul' :  'santiago do sul'})</code></pre>
 								<pre><code>pib['Cidade'] = pib['Regiao']</code></pre>
 								<pre><code>pib.head()</code></pre>
@@ -566,7 +565,7 @@
 									</tbody>
 								  </table>
 
-								<p> Criando o merge entra o grupo de dados pib e o grupo de dados df_fatia.</p>
+								<p> Unindo os conjuntos de dados (merge) PIB e df_fatia.</p>
 								<pre><code>pib_merge = pib[['Cidade','pib','percentual']]</code></pre>
 								<pre><code>df_fatia['Cidade'] = df_fatia['NOME_MUNICIPIO'].str.lower()</code></pre>
 								<pre><code>df_merge_pib = df_fatia.merge(pib_merge,<br>on = 'Cidade',how='left')</code></pre>
@@ -637,9 +636,9 @@
 							<hr />
 							<br>
 
-							<details><summary>3.3 Pib Médio por Cidade:</summary>
+							<details><summary>3.3 PIB Médio por Cidade:</summary>
 
-								<p>Criar novos index e trazer a região para uma coluna</p>
+								<p>Criando um PIB médio por cidade</p>
 
 								<pre><code>pib_group.reset_index(inplace = True)</code></pre>
 								<p>Criar uma lista com a quantidade de cidade por região:</p>
@@ -707,7 +706,7 @@
 										<th>0</th>
 										<td>Grande Florianópolis</td>
 										<td>44616635.0</td>
-										<td>936.0</td>
+										<td>9.42</td>
 										<td>20</td>
 										<td>2230831.75</td>
 									  </tr>
@@ -715,7 +714,7 @@
 										<th>1</th>
 										<td>Norte</td>
 										<td>65983990.0</td>
-										<td>1384.0</td>
+										<td>13.93</td>
 										<td>26</td>
 										<td>2537845.77</td>
 									  </tr>
@@ -723,7 +722,7 @@
 										<th>2</th>
 										<td>Oeste</td>
 										<td>46454513.0</td>
-										<td>974.0</td>
+										<td>9.80</td>
 										<td>116</td>
 										<td>400469.94</td>
 									  </tr>
@@ -731,7 +730,7 @@
 										<th>3</th>
 										<td>Serrana</td>
 										<td>12623611.0</td>
-										<td>265.0</td>
+										<td>2.67</td>
 										<td>29</td>
 										<td>435296.93</td>
 									  </tr>
@@ -739,7 +738,7 @@
 										<th>4</th>
 										<td>Sul</td>
 										<td>31170034.0</td>
-										<td>654.0</td>
+										<td>6.58</td>
 										<td>44</td>
 										<td>708409.86</td>
 									  </tr>
@@ -747,15 +746,16 @@
 										<th>5</th>
 										<td>Vale do Iajaí</td>
 										<td>272782471.0</td>
-										<td>5722.0</td>
+										<td>57.59</td>
 										<td>53</td>
 										<td>5146839.08</td>
 									  </tr>
 									</tbody>
 								  </table>
 
-								  <pre><code>pib_regiao['Pib_medio_cidade'] = (pib_regiao['pib'] / pib_regiao['n_cidade']).round(2)</br>pib_regiao['Per. (%)'] = (pib_regiao['Per. (%)']*100).round(2)</code></pre>
-								  <pre><code>pib_regiao.sort_values(by = ['pib'], ascending=False).reset_index(inplace = True)</code></pre>
+								  <pre><code>pib_regiao['Pib_medio_cidade'] = (pib_regiao['pib'] / pib_regiao['n_cidade']).round(2)
+								</br>pib_regiao['Per. (%)'] = (pib_regiao['Per. (%)']/pib_regiao['Per. (%)'].sum()*100).round(2)</code></pre>
+								  <pre><code>pib_regiao.sort_values(by = ['Per. (%)'], ascending = False)</code></pre>
 
 								  <table border="1" class="dataframe">
 									<thead>
@@ -770,52 +770,52 @@
 									</thead>
 									<tbody>
 									  <tr>
-										<th>0</th>
-										<td>Grande Florianópolis</td>
-										<td>44616635.0</td>
-										<td>936.0</td>
-										<td>20</td>
-										<td>2230831.75</td>
+										<th>5</th>
+										<td>Vale do Iajaí</td>
+										<td>272782471</td>
+										<td>57.59</td>
+										<td>53</td>
+										<td>5146839.08</td>
 									  </tr>
 									  <tr>
 										<th>1</th>
 										<td>Norte</td>
-										<td>65983990.0</td>
-										<td>1384.0</td>
+										<td>65983990</td>
+										<td>13.93</td>
 										<td>26</td>
 										<td>2537845.77</td>
 									  </tr>
 									  <tr>
 										<th>2</th>
 										<td>Oeste</td>
-										<td>46454513.0</td>
-										<td>974.0</td>
+										<td>46454513</td>
+										<td>9.80</td>
 										<td>116</td>
 										<td>400469.94</td>
 									  </tr>
 									  <tr>
-										<th>3</th>
-										<td>Serrana</td>
-										<td>12623611.0</td>
-										<td>265.0</td>
-										<td>29</td>
-										<td>435296.93</td>
+										<th>0</th>
+										<td>Grande Florianópolis</td>
+										<td>44616635</td>
+										<td>9.42</td>
+										<td>20</td>
+										<td>2230831.75</td>
 									  </tr>
 									  <tr>
 										<th>4</th>
 										<td>Sul</td>
-										<td>31170034.0</td>
-										<td>654.0</td>
+										<td>31170034</td>
+										<td>6.58</td>
 										<td>44</td>
 										<td>708409.86</td>
 									  </tr>
 									  <tr>
-										<th>5</th>
-										<td>Vale do Iajaí</td>
-										<td>272782471.0</td>
-										<td>5722.0</td>
-										<td>53</td>
-										<td>5146839.08</td>
+										<th>3</th>
+										<td>Serrana</td>
+										<td>12623611</td>
+										<td>2.67</td>
+										<td>29</td>
+										<td>435296.93</td>
 									  </tr>
 									</tbody>
 								  </table>
@@ -831,30 +831,25 @@
 							<h2>4. Coluna Prestação</h2>
 
 							<details><summary>4.1 Estágio e Horário de Trabalho:</summary>
-								<p> Em nosso conjunto de dados possue uma coluna que chama <b> Prestação</b> Ela possuem diversas informações,
-								que teremos que organizar para conseguir obter o de forma separada. primeiramente iremos fazer uma cópia 
-								do nosso conjunto de dados original e depois observar a primeira da coluna prestação:</p>
+								<p> A coluna <b> Pretenção</b> possuem diversas informações,
+								que teremos que organizar para conseguir obter os dados de forma separada. </p>
 								<pre><code>prest = df_merge_pib.copy() </code></pre>
 								<pre><code>prest.loc[0,'PRETENSOES']</code></pre>
 								<p># '724405-CALDEIREIRO (CHAPAS DE COBRE)(N,6,0,Indiferente)|724435-Funileiro industrial(N,99,0,Indiferente)|</br>731105-MONTADOR DE EQUIPAMENTOS ELETRONICOS (APARELHOS MEDICOS)(N,3,0,Comercial)</br>784205-Auxiliar de linha de produção(N,0,0,Indiferente)'</p>
-								<p> Necca coluna possuem pretenção de emprego, estágio ou não, trabalho informal, trabalho formal, e horário pretendido para trabalhar. Iremos agora obter todos este dados 
-									de forma separada</p>
-								<p> Iremos primeiramente pegar apenas as informaç~eos de Estágio, Experiencia formal, Esperiencia informal e horário. 
-									Precisamos criar uma espressão regular para obster eestras informações :<b>(N,6,0,Indiferente)</b>.</p>
+								<p> Essa coluna possue pretenção de emprego, estágio, trabalho informal, trabalho formal e horário pretendido para trabalhar. 
+									É possível obter todos este dados 
+									de forma separada.</p>
+								
 								<pre><code>padrao = re.compile('[N-S]?(,)[0-9]?[0-9]?[0-9]?[0-9]?(,)[0-9]?[0-9]?[0-9]?[0-9]?,(Indiferente)?(Comercial)?(Manhã)?(Tarde)?(Noite)?(Madrugada)?(Manhã/Tarde)?(Manhã/Noite)?(Manhã/Madrugada)?(Manhã/Tarde/Noite)?(Manhã/Tarde/Madrugada)?(Manhã/Noite/Madrugada)?(Manhã/Tarde/Noite/Madrugada)?(Tarde/Noite)?(Tarde/Madrugada)?(Tarde/Noite/Madrugada)?(Noite/Madrugada)?')</br>prest['info'] = None</code></pre>
-								<p>Iremos remover as linhas que não possuem pretensão de cago, pois esta é a nossa principal coluna, precisamos apenas das colunas com informação</p>
 								<pre><code>prest.dropna(subset =['PRETENSOES'], inplace = True)</code></pre>
 								<pre><code>prest.reset_index(inplace = True)</br>prest.drop(columns = ['index'], inplace = True)</code></pre>
 								<pre><code>inf = []</br>for i in range(prest.shape[0]):</br>&nbsp;&nbsp;&nbsp;acrescenta = padrao.search(prest.loc[i,'PRETENSOES']).group()</br>&nbsp;&nbsp;&nbsp;inf.append(acrescenta)</code></pre>
-								<p> Vejamos como ficou a nossa lista com as primeiras 05 linhas:</p>
+								<p> Segue amostra dos dados higienizados:</p>
 								<p>['N,6,0,Indiferente',</br>'N,166,0,Indiferente',</br>'N,0,0,Indiferente',</br>'N,55,0,Indiferente',</br>'N,3,0,Indiferente']</p>
-								<p> Agora podemos criar uma coluna em nosso conjunto de dados com o nome <b>info</b>.</p>
 								<pre><code>prest['info'] = inf</code></pre>
-								<p> Agora podemos separar estar informações em 04 novas colunas</p>
 								<pre><code>estagio, Experiencia_Formal, Experiencia_informal, Horario = [], [], [], []</br>for i in range(prest.shape[0]):</br>&nbsp;&nbsp;&nbsp;inf = prest.loc[i,'info'].split(sep = ',')</br>&nbsp;&nbsp;&nbsp;estagio.append(inf[0])</br>&nbsp;&nbsp;&nbsp;Experiencia_Formal.append(inf[1])</br>&nbsp;&nbsp;&nbsp;Experiencia_informal.append(inf[2])</br>&nbsp;&nbsp;&nbsp;Horario.append(inf[3])</code></pre>
 
 								<pre><code>prest['Estagio'] = estagio</br>prest['Experiencia_Formal'] = Experiencia_Formal</br>prest['Experiencia_informal'] = Experiencia_informal</br>prest['Horario'] = Horario</code></pre>
-									<p>E observar como ficou o nosso conjunto de dados com algumas colunas:</p>
 
 								<pre><code>prest[['Nivel_esc','Regiao','Cidade','pib','percentual','info','Estagio','Experiencia_Formal','Experiencia_informal','Horario']].head()
 								</code></pre>
@@ -950,8 +945,8 @@
 								<br>
 	
 						  <details><summary>4.2 Cargo Pretendido:</summary>
-							<p>Agora iremos criar um novo conjunto de dados, para obster todas as pretenções de cargo de cada cidadão.
-								Primeiramente iremos rever o nosso conjunto de dados com todas as profissões cadastradas. Este informações foram coledas
+							<p>Coletamos separadamento as pretenções solicitadas por trabalhados. Com o CBO identificado, consegui enriquecer os dados com novas informações.
+								atrás do conjunto de dados do site:
 								<a target="_blank"  href="https://www.salario.com.br/tabela-salarial/">salario.com.br</a>.</p>
 								<pre><code>df_CBO.head()</code></pre>
 
@@ -1312,6 +1307,14 @@
 
 								<hr />
 								<br>
+									<!-- Three -->
+							<section id="three">
+								<div class="inner">
+									<header class="major">
+										<h2>Análise Exploratória</h2>
+									</header>
+									<p style="text-align: justify;">Visualização detalhada do conjunto de dados, transformando - os,
+										em informações ricas, para obtenção de insights de negócios.</p>
 
 								<ul class="actions">
 									<li><a href="exploratory_analysis.html" class="button next">Análise Exploratória</a></li>
